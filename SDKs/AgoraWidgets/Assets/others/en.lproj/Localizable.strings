@@ -101,6 +101,11 @@ fcr_popup_quiz_my_answer = "My Answer";
 fcr_popup_quiz_start_again = "restart";
 fcr_popup_quiz_answer_time = "Time elapsed";
 
+//slide
+fcr_board_slide_retry = "course load failure, retry now";
+fcr_board_slide_retry_failure = "course load failure, please load next page or reopen";
+
+
 // poll
 fcr_poll_title = "Poll";
 fcr_poll_submit = "Submit";

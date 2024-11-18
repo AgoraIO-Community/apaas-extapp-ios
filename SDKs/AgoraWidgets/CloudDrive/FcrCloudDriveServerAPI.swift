@@ -54,7 +54,7 @@ class FcrCloudDriveServerAPI: AgoraWidgetServerAPI {
         request(event: "cloud-drive-delete-file",
                 url: urlString,
                 method: .delete,
-                parameters: list) { json in
+                anyParameters: list) { json in
             success(resourceUuid)
         } failure: { error in
             failure(error)
@@ -117,7 +117,7 @@ class FcrCloudDriveServerAPI: AgoraWidgetServerAPI {
         request(event: "cloud-drive",
                 url: urlString,
                 method: .post,
-                parameters: parameters) { json in
+                anyParameters: parameters) { json in
             if let data = (json["data"] as? [[String: Any]])?.first {
                 success(data)
             } else {

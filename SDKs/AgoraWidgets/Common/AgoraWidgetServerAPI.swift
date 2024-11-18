@@ -85,7 +85,7 @@ public class AgoraWidgetServerAPI: NSObject {
                  url: String,
                  method: ArHttpMethod,
                  header: [String: String]? = nil,
-                 parameters: Any? = nil,
+                 anyParameters: Any,
                  success: JsonCompletion? = nil,
                  failure: FailureCompletion? = nil) {
         var extra: [String: Any] = ["event": event]
@@ -94,9 +94,7 @@ public class AgoraWidgetServerAPI: NSObject {
             extra["header"] = header.description
         }
         
-        if let `parameters` = parameters  {
-            extra["parameters"] = parameters
-        }
+        extra["parameters"] = anyParameters
         
         self.armin.logTube?.log(info: "http request",
                                 extra: extra.description)
@@ -114,10 +112,8 @@ public class AgoraWidgetServerAPI: NSObject {
         }
         
         // Parameters
-        if let params = parameters {
-            let jsonData = try? JSONSerialization.data(withJSONObject: params)
-            request.httpBody = jsonData
-        }
+        let jsonData = try? JSONSerialization.data(withJSONObject: anyParameters)
+        request.httpBody = jsonData
         
         request.allHTTPHeaderFields = ["x-agora-token": token,
                                        "x-agora-uid": userId,

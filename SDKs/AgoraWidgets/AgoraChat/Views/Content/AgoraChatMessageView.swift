@@ -199,17 +199,35 @@ extension AgoraChatMessageView: UITableViewDelegate, UITableViewDataSource {
                 cell.messageImageView.size = size
                 cell.updateFrame()
             } else {
-                let url = URL(string: model.imageRemoteUrl)
+                let urlString = model.imageRemoteUrl
+                let url = URL(string: urlString)
                 let brokenImage = UIConfig.agoraChat.picture.brokenImage
+                
                 cell.messageImageView.sd_setImage(with: url,
                                                   placeholderImage: brokenImage) { [weak self] downloadImage, error, cacheType, url in
                     guard let `self` = self else {
                         return
                     }
-                    cell.messageImageView.image = downloadImage
-                    let size = cell.sizeWithImage(downloadImage)
-                    cell.messageImageView.size = size
-                    cell.updateFrame()
+                    
+                    guard self.messageDataSource.count > indexPath.row else {
+                        return
+                    }
+                    
+                    let type = self.messageDataSource[indexPath.row]
+                    
+                    guard case .image(var model) = type else {
+                        return
+                    }
+                    
+                    guard model.imageRemoteUrl == urlString else {
+                        return
+                    }
+                    
+                    model.image = downloadImage
+                    
+                    let new = AgoraChatMessageViewType.image(model)
+                    
+                    self.messageDataSource[indexPath.row] = new
                     
                     tableView.reloadRows(at: [indexPath],
                                          with: .none)
@@ -229,11 +247,16 @@ extension AgoraChatMessageView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         let type = messageDataSource[indexPath.row]
+        
         guard case .image(let model) = type else {
             return
         }
-        setFullScreenImage(urlString: model.imageRemoteUrl,
-                           localImage: model.image)
+        
+        guard let image = model.image else {
+            return
+        }
+        
+        setFullScreenImage(localImage: image)
     }
 }
 
@@ -289,23 +312,14 @@ private extension AgoraChatMessageView {
     func updateNoticeMessageCell(cell: AgoraChatNoticeMessageCell,
                                  notice: String) {
         cell.noticeLabel.text = notice
-      }
+    }
     
-    func setFullScreenImage(urlString: String?,
-                            localImage:UIImage?) {
+    func setFullScreenImage(localImage: UIImage) {
         let topVc = UIViewController.agora_top_view_controller()
         
-        if let localImage = localImage {
-            topVc.view.bringSubviewToFront(fullScreenImageView)
-            fullScreenImageView.agora_visible = true
-            fullScreenImageView.image = localImage
-        } else if let url = URL(string: urlString) {
-            topVc.view.bringSubviewToFront(fullScreenImageView)
-            fullScreenImageView.agora_visible = true
-            fullScreenImageView.sd_setImage(with: url)
-        } else {
-            return
-        }
+        topVc.view.bringSubviewToFront(fullScreenImageView)
+        fullScreenImageView.agora_visible = true
+        fullScreenImageView.image = localImage
     }
     
     @objc func onClickCloseFullScreenImage() {
