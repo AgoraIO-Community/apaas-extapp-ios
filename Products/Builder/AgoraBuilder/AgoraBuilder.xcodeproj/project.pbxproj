@@ -116,7 +116,6 @@
 				863FED262886A2F70014AFB5 /* Frameworks */,
 				863FED272886A2F70014AFB5 /* Resources */,
 				68FE6F8E28F3F4DC0090F438 /* Embed Frameworks */,
-				01118E9E76330CAA6FCA5660 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -173,23 +172,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		01118E9E76330CAA6FCA5660 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AgoraBuilder/Pods-AgoraBuilder-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AgoraBuilder/Pods-AgoraBuilder-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AgoraBuilder/Pods-AgoraBuilder-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2CEA6F2F031D78E03E304C02 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

@@ -8,7 +8,7 @@
 import Foundation
 import Whiteboard
 
-class FcrBoardRoom: NSObject {
+class FcrBoardRoom: NSObject, WhiteSlideDelegate {
     private weak var whiteRoom: WhiteRoom?
     private let whiteView: WhiteBoardView
     private let whiteSDK: WhiteSDK
@@ -20,12 +20,18 @@ class FcrBoardRoom: NSObject {
     private var mainWindow: FcrBoardMainWindow?
     
     weak var delegate: FcrBoardRoomDelegate?
-    weak var logTube: FcrBoardLogTube?
+    weak var logTube: FcrBoardLogTube? {
+        didSet {
+            listener.logTube = logTube
+        }
+    }
     
     init(appId: String,
          region: FcrBoardRegion,
-         backgroundColor: UIColor?) {
+         backgroundColor: UIColor?,
+         logTube: FcrBoardLogTube?) {
         let listener = FcrBoardListener()
+        listener.logTube = logTube
         
         let whiteView = WhiteBoardView(frame: .zero,
                                        configuration: WKWebViewConfiguration.defaultConfig())
@@ -37,19 +43,28 @@ class FcrBoardRoom: NSObject {
         sdkConfig.region = region.netlessValue
         sdkConfig.useMultiViews = true
         sdkConfig.userCursor = true
+        sdkConfig.enableAppliancePlugin = true
+        sdkConfig.log = true
+        
+        sdkConfig.loggerOptions = ["printLevelMask": WhiteSDKLoggerOptionLevelKey.debug.rawValue]
         
         let whiteSDK = WhiteSDK(whiteBoardView: whiteView,
                                 config: sdkConfig,
                                 commonCallbackDelegate: listener,
-                                audioMixerBridgeDelegate: listener)
+                                effectMixerBridgeDelegate: listener)
+        
+        whiteSDK.setParameters(["effectMixingForMediaPlayer": true])
         
         self.whiteView = whiteView
         self.whiteSDK = whiteSDK
         self.listener = listener
+        self.logTube = logTube
         
         super.init()
         
+        whiteSDK.setSlideDelegate(self)
         listener.roomNeedObserve = self
+        listener.effectMixer = whiteSDK.effectMixer
         
         registerH5App()
         
@@ -73,12 +88,20 @@ class FcrBoardRoom: NSObject {
             funcName: "init")
     }
     
+
+    func onSlideError(_ slideError: WhiteSlideErrorType, errorMessage: String, slideId: String, slideIndex: Int) {
+        delegate?.onSlideError(slideError: slideError, errorMessage: errorMessage, slideId: slideId, slideIndex: slideIndex)
+    }
+    
+    func recoverSlide(slideId:String, slideIndex:Int) {
+        self.whiteSDK.recoverSlide(slideId, slideIndex: slideIndex)
+    }
+    
     func join(config: FcrBoardRoomJoinConfig,
               superView: UIView,
               success: @escaping (FcrBoardMainWindow) -> Void,
               failure: @escaping (Error) -> Void) {
         hasLeft = false
-        
         joinConfig = config
         
         superView.addSubview(whiteView)
@@ -162,6 +185,8 @@ private extension FcrBoardRoom {
         
         delegate?.onConnectionStateUpdated(state: state)
     }
+    
+  
     
     func getWhiteRoomConfig() -> WhiteRoomConfig? {
         guard let config = joinConfig else {

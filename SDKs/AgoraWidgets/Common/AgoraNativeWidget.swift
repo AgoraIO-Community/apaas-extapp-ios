@@ -14,9 +14,9 @@ public class AgoraNativeWidget: AgoraBaseWidget, AgoraWidgetLogTube {
         
         let logger = AgoraWidgetLogger(widgetId: widgetInfo.widgetId,
                                        logId: widgetInfo.localUserInfo.userUuid)
-#if DEBUG
+//#if DEBUG
         logger.isPrintOnConsole = true
-#endif
+//#endif
         self.logger = logger
         
         super.init(widgetInfo: widgetInfo)

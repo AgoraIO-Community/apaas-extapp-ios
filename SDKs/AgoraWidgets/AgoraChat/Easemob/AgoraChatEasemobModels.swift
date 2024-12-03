@@ -9,6 +9,30 @@ import Foundation
 import AgoraChat
 import AgoraLog
 
+typealias EasemobSuccessCompletion = () -> ()
+typealias EasemobJoinSuccessCompletion = (_ room:AgoraChatroom?) -> ()
+typealias EasemobSendSuccessCompletion = (_ msg:[AgoraChatMessage]) -> ()
+typealias EasemobStringCompletion = (String?) -> ()
+typealias EasemobMuteStateCompletion = (_ muted: Bool) -> ()
+typealias EasemobMessageListCompletion = ([AgoraChatMessage]?) -> ()
+typealias EasemobFailureCompletion = (AgoraChatErrorType) -> ()
+typealias EasemobSendFailureCompletion = (AgoraChatErrorType) -> ()
+typealias EasemobJoinFailureCompletion = (_ roomId:String, _ errType:AgoraChatErrorType) -> ()
+
+protocol AgoraChatEasemobDelegate: NSObjectProtocol {
+    func didReceiveMessages(list: [AgoraChatMessage])
+    func didSendMessages(list: [AgoraChatMessage])
+    func didLocalMuteStateChanged(_ muted: Bool)
+    func didAllMuteStateChanged(_ muted: Bool)
+    func didReceiveAnnouncement(_ announcement: String?)
+    func didConnectionStateChaned(_ state: AgoraChatConnectionState)
+    func onEasemobLog(content: String,
+                      extra: String?,
+                      type: FcrEasemobLogType)
+    func didOccurError(type: AgoraChatErrorType)
+}
+
+
 struct AgoraChatEasemoExtraInfo: Convertable {
     var avatarurl: String?
 }
@@ -35,13 +59,19 @@ struct AgoraChatEasemobUserConfig {
     var fcrRoomId: String
     var password: String
     var role: Int
+    var sendRoomIds: Array<String>
+    var recvRoomIds: Array<String>
+    var chatGroupUuids: Array<String>
     
     init(userName: String,
          nickName: String,
          avatarurl: String?,
          fcrRoomId: String,
          password: String? = "",
-         role: Int) {
+         role: Int,
+         sendRoomIds: Array<String>? = [],
+         recvRoomIds: Array<String>? = [],
+         chatGroupUuids: Array<String>? = []) {
         var finalAvatarUrl = "https://download-sdk.oss-cn-beijing.aliyuncs.com/downloads/IMDemo/avatar/Image1.png"
         var finalPassword = userName
         if let avatarurl = avatarurl {
@@ -56,6 +86,9 @@ struct AgoraChatEasemobUserConfig {
         self.fcrRoomId = fcrRoomId
         self.password = finalPassword
         self.role = role
+        self.sendRoomIds = sendRoomIds ?? []
+        self.recvRoomIds = recvRoomIds ?? []
+        self.chatGroupUuids = chatGroupUuids ?? []
     }
 }
 

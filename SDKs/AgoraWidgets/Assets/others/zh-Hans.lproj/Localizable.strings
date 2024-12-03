@@ -90,6 +90,10 @@ fcr_cloud_upload_file = "上传文件";
 fcr_cloud_upload_pictures = "上传图片";
 fcr_cloud_uploading = "上传中";
 
+//slide
+fcr_board_slide_retry = "课件加载失败，正在重试";
+fcr_board_slide_retry_failure = "课件加载失败，请切换下一页或关闭课件后重试";
+
 // AnswerSelector
 fcr_popup_quiz = "答题器";
 fcr_popup_quiz_post = "提交答案";

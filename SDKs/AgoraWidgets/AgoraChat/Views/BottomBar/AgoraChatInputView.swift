@@ -80,6 +80,19 @@ extension AgoraChatInputView: UITextFieldDelegate {
         onClickSendMessage()
         return true
     }
+    
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        guard let currentText = textField.text else {
+            return true
+        }
+        
+        let newText = currentText.replacingCharacters(in: Range(range, in: currentText)!,
+                                                      with: string)
+        
+        return newText.count <= 300
+    }
 }
 // MARK: - Actions
 private extension AgoraChatInputView {
@@ -234,4 +247,3 @@ extension AgoraChatInputView: AgoraUIContentContainer {
         sendButton.layer.cornerRadius = config.cornerRadius
     }
 }
- 

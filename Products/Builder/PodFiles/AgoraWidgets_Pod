@@ -1,13 +1,14 @@
   # third libs
-  pod 'Armin', '1.1.0'
+  pod 'Armin',        '1.1.0'
   pod 'SwifterSwift', '5.2.0'
-  pod 'Masonry', '1.1.0'
-  pod 'SDWebImage', '<=5.12.0'
-  pod 'AgoraLog', '1.0.2'
+  pod 'Masonry',      '1.1.0'
+  pod 'SDWebImage',   '<=5.12.0'
+  pod 'AgoraLog',     '1.0.2'
 
   # agora libs
-  pod 'Whiteboard', '2.16.45'
-  pod 'Agora_Chat_iOS', '1.0.6'
+  pod 'AgoraRtcEngine_Special_iOS', '3.7.2.133'
+  pod 'Agora_Chat_iOS', 	    '1.0.6'
+  pod 'Whiteboard', 		      '2.16.90'
   
   # close source libs
   pod 'AgoraUIBaseViews/Binary', :path => '../../../AgoraUIBaseViews_Local.podspec'
