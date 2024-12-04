@@ -11,6 +11,7 @@ import Whiteboard
 // Public
 protocol FcrBoardRoomDelegate: NSObjectProtocol {
     func onConnectionStateUpdated(state: FcrBoardRoomConnectionState)
+    func onSlideError(slideError: WhiteSlideErrorType, errorMessage: String, slideId: String, slideIndex: Int)
 }
 
 protocol FcrBoardMainWindowDelegate: FcrBoardAudioMixingDelegate {

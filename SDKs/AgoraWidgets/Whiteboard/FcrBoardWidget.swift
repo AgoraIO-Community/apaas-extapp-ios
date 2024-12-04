@@ -10,6 +10,7 @@ import AgoraWidget
 import AgoraLog
 import Photos
 import Armin
+import Whiteboard
 
 @objcMembers public class FcrBoardWidget: AgoraNativeWidget {
     // Views
@@ -28,6 +29,7 @@ import Armin
     
     private var canJoin = false
     
+    private var retryTime = 0
     // 教师角色加入房间成功时设置，学生角色监听grantedUsers变化设置
     private var hasOperationPrivilege: Bool = false {
         didSet {
@@ -56,6 +58,14 @@ import Armin
 
         analyzeGrantedUsersFromRoomProperties()
     }
+    
+    func retry(slideId:String, slideIndex: Int){
+        self.retryTime += 1
+        self.boardRoom?.recoverSlide(slideId: slideId, slideIndex: slideIndex)
+        showToast("fcr_board_slide_retry".localized() + String(self.retryTime) + "/5",
+                     type: .error)
+    }
+    
     
     public override func onWidgetRoomPropertiesDeleted(_ properties: [String : Any]?,
                                                        cause: [String : Any]?,
@@ -663,6 +673,29 @@ extension FcrBoardWidget: FcrBoardRoomDelegate {
             AgoraLoading.loading(in: view)
         default:
             break
+        }
+    }
+    func onSlideError(slideError: WhiteSlideErrorType, errorMessage: String, slideId: String, slideIndex: Int) {
+        if(slideError == WhiteSlideErrorType.resourceError || slideError == WhiteSlideErrorType.canvasCrash){
+            if(self.retryTime == 0){
+                self.retry(slideId: slideId, slideIndex: slideIndex)
+            }else if(self.retryTime < 5){
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                    self.retry(slideId: slideId, slideIndex: slideIndex)
+                }
+            }else{
+                showToast("fcr_board_slide_retry_failure".localized(),
+                             type: .error)
+            }
+        } else if(slideError == WhiteSlideErrorType.runtimeError){
+            self.boardRoom?.recoverSlide(slideId: slideId, slideIndex: slideIndex + 1)
+        } else if(slideError == WhiteSlideErrorType.runtimeWarn) {
+            let slideExtra = ["slideId": slideId,
+                                "slideIndex": slideIndex.agDescription]
+            log(content: "slide page error",
+                extra: slideExtra.agDescription, type: .warning,
+                fromClass: WhiteSDK.self,
+                funcName: "onSlideError")
         }
     }
 }

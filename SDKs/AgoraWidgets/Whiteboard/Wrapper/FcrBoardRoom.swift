@@ -8,7 +8,7 @@
 import Foundation
 import Whiteboard
 
-class FcrBoardRoom: NSObject {
+class FcrBoardRoom: NSObject, WhiteSlideDelegate {
     private weak var whiteRoom: WhiteRoom?
     private let whiteView: WhiteBoardView
     private let whiteSDK: WhiteSDK
@@ -43,6 +43,7 @@ class FcrBoardRoom: NSObject {
         sdkConfig.region = region.netlessValue
         sdkConfig.useMultiViews = true
         sdkConfig.userCursor = true
+        sdkConfig.enableAppliancePlugin = true
         sdkConfig.log = true
         
         sdkConfig.loggerOptions = ["printLevelMask": WhiteSDKLoggerOptionLevelKey.debug.rawValue]
@@ -61,6 +62,7 @@ class FcrBoardRoom: NSObject {
         
         super.init()
         
+        whiteSDK.setSlideDelegate(self)
         listener.roomNeedObserve = self
         listener.effectMixer = whiteSDK.effectMixer
         
@@ -86,12 +88,20 @@ class FcrBoardRoom: NSObject {
             funcName: "init")
     }
     
+
+    func onSlideError(_ slideError: WhiteSlideErrorType, errorMessage: String, slideId: String, slideIndex: Int) {
+        delegate?.onSlideError(slideError: slideError, errorMessage: errorMessage, slideId: slideId, slideIndex: slideIndex)
+    }
+    
+    func recoverSlide(slideId:String, slideIndex:Int) {
+        self.whiteSDK.recoverSlide(slideId, slideIndex: slideIndex)
+    }
+    
     func join(config: FcrBoardRoomJoinConfig,
               superView: UIView,
               success: @escaping (FcrBoardMainWindow) -> Void,
               failure: @escaping (Error) -> Void) {
         hasLeft = false
-        
         joinConfig = config
         
         superView.addSubview(whiteView)
@@ -175,6 +185,8 @@ private extension FcrBoardRoom {
         
         delegate?.onConnectionStateUpdated(state: state)
     }
+    
+  
     
     func getWhiteRoomConfig() -> WhiteRoomConfig? {
         guard let config = joinConfig else {
