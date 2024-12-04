@@ -25,7 +25,7 @@ Pod::Spec.new do |spec|
   spec.dependency "AgoraRtcEngine_Special_iOS", '~> 3.7.2.133'
   
   # Netless
-  spec.dependency "Whiteboard", ">=2.16.0"
+  spec.dependency "Whiteboard", ">=2.16.107"
   
   # Hyphenate
   spec.dependency "Agora_Chat_iOS", "1.0.6"
