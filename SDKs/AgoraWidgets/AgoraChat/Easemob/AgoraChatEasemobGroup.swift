@@ -492,14 +492,14 @@ class AgoraChatEasemobGroup: NSObject {
                     case .removeAllMute:
                         self.delegate?.didAllMuteStateChanged(false)
                     case .mute:
-                        guard let muteUserId = cmdMessage.ext?[muteMemberKey] as? String,
-                              muteUserId == userConfig.userName else {
+                        guard let muteUserId = cmdMessage.ext?[self.muteMemberKey] as? String,
+                              muteUserId == self.userConfig.userName else {
                             break
                         }
                         self.delegate?.didLocalMuteStateChanged(true)
                     case .unmute:
-                        guard let muteUserId = cmdMessage.ext?[muteMemberKey] as? String,
-                              muteUserId == userConfig.userName else {
+                        guard let muteUserId = cmdMessage.ext?[self.muteMemberKey] as? String,
+                              muteUserId == self.userConfig.userName else {
                             break
                         }
                         self.delegate?.didLocalMuteStateChanged(false)
