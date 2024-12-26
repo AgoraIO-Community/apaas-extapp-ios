@@ -26,12 +26,12 @@ Pod::Spec.new do |spec|
   spec.dependency "Whiteboard",                 :git => 'https://github.com/netless-io/Whiteboard-iOS', :branch => 'effect-mixing'
   
   # Hyphenate
-  spec.dependency "Agora_Chat_iOS", "1.0.6"
+  spec.dependency "Agora_Chat_iOS",              "1.0.6"
 
   # Third libs
   spec.dependency "SwifterSwift"
   spec.dependency "Masonry"
-  spec.dependency "SDWebImage", "<=5.12.0"
+  spec.dependency "SDWebImage",                 "<=5.12.0"
   
   spec.subspec "Source" do |ss|
     ss.source_files = "SDKs/AgoraWidgets/**/**/*.{h,m,swift}"
