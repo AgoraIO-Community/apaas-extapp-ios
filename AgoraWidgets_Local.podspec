@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "AgoraWidgets"
-  spec.version      = "2.8.103"
+  spec.version      = "2.8.105"
   spec.summary      = "SDKs/AgoraWidgets."
   spec.description  = "Agora native widgets"
   spec.homepage     = "https://docs.agora.io/en/agora-class/landing-page?platform=iOS"
@@ -18,21 +18,21 @@ Pod::Spec.new do |spec|
   spec.pod_target_xcconfig  = { "VALID_ARCHS" => "arm64 armv7 x86_64" }
   spec.user_target_xcconfig = { "VALID_ARCHS" => "arm64 armv7 x86_64" }
 
-  # common libs
-  spec.dependency "AgoraLog", "1.0.2"
-  spec.dependency "Armin", ">=1.1.0"
+  # Agora libs
+  spec.dependency "AgoraFoundation",            "~> 1.2.0"
+  spec.dependency "AgoraRtcEngine_Special_iOS", "3.7.2.133"
 
-  spec.dependency "SwifterSwift"
-  spec.dependency "Masonry"
-  spec.dependency "AgoraRtcEngine_Special_iOS", '>=3.7.2.133'
-  
   # Netless
-  spec.dependency "Whiteboard", ">=2.16.0"
+  spec.dependency "Whiteboard",                 :git => 'https://github.com/netless-io/Whiteboard-iOS', :branch => 'effect-mixing'
   
   # Hyphenate
   spec.dependency "Agora_Chat_iOS", "1.0.6"
-  spec.dependency "SDWebImage", "<=5.12.0"
 
+  # Third libs
+  spec.dependency "SwifterSwift"
+  spec.dependency "Masonry"
+  spec.dependency "SDWebImage", "<=5.12.0"
+  
   spec.subspec "Source" do |ss|
     ss.source_files = "SDKs/AgoraWidgets/**/**/*.{h,m,swift}"
     ss.resource_bundles = {
