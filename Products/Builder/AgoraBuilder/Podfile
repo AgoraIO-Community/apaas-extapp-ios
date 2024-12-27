@@ -9,15 +9,8 @@ target 'AgoraBuilder' do
   pod 'Masonry',      '1.1.0'
 
   #ContentStartIndex
-  # close source libs
-  pod 'AgoraUIBaseViews/Source', :path => '../../../../apaas-common-libs-ios/AgoraUIBaseViews_Local.podspec'
-  pod 'AgoraWidget/Source',      :path => '../../../../apaas-common-libs-ios/AgoraWidget_Local.podspec'
   
-  # open source libs
-  pod 'AgoraWidgets/Build', :path => '../../../AgoraWidgets_Local.podspec'
   #ContentEndIndex
-
-  pod "Whiteboard",                 :git => 'https://github.com/netless-io/Whiteboard-iOS', :branch => 'effect-mixing'
 
   # post install, no signing for pods bundle, after xcode 14
   low_version_target_names = ["Armin", "YYModel", "Masonry", "NTLBridge", "CocoaLumberjack", "AliyunOSSiOS"]
