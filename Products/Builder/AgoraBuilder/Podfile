@@ -4,31 +4,34 @@ platform :ios, '10.0'
 target 'AgoraBuilder' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  
+  pod 'Whiteboard',   :git => 'https://github.com/netless-io/Whiteboard-iOS', :branch => 'effect-mixing'
   pod 'SwifterSwift', '5.2.0'
   pod 'Masonry',      '1.1.0'
 
   #ContentStartIndex
   
   #ContentEndIndex
+end
 
-  # post install, no signing for pods bundle, after xcode 14
-  low_version_target_names = ["Armin", "YYModel", "Masonry", "NTLBridge", "CocoaLumberjack", "AliyunOSSiOS"]
-  
-  post_install do |installer|
-    installer.pods_project.targets.each do |target|
-      target.build_configurations.each do |config|
-	config.build_settings['ENABLE_BITCODE'] = 'NO'	
-
-        if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
-          config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
-        end
+# post install
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
         
-        if low_version_target_names.include?(target.name)
-          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '10.0'
-        end
+      # no signing for pods bundle, after xcode 14
+      if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+        config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
       end
+        
+      # reset libs version
+      deployment = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
+
+      if deployment.to_f < 11.0
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+      end
+
+      config.build_settings['ENABLE_BITCODE'] = 'NO'
     end
   end
 end
-

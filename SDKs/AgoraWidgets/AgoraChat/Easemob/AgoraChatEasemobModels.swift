@@ -7,7 +7,7 @@
 
 import Foundation
 import AgoraChat
-import AgoraLog
+import AgoraFoundation
 
 struct AgoraChatEasemoExtraInfo: Convertable {
     var avatarurl: String?
@@ -225,7 +225,7 @@ enum FcrEasemobLogType: Int {
     case warning = 2
     case error   = 3
     
-    var agoraType: AgoraLogType {
+    var agoraType: AgoraLogInnerType {
         switch self {
         case .info:     return .info
         case .warning:  return .warning
