@@ -21,7 +21,7 @@ Pod::Spec.new do |spec|
   spec.dependency "AgoraWidget",                "~> 2.8.105"
   
   # Netless
-  spec.dependency "Whiteboard",                 :git => 'https://github.com/netless-io/Whiteboard-iOS', :branch => 'effect-mixing'
+  spec.dependency "Whiteboard"
   
   # Hyphenate
   spec.dependency "Agora_Chat_iOS",             "1.0.6"
