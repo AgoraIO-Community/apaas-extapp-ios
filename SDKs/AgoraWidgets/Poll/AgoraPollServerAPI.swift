@@ -6,7 +6,7 @@
 //
 
 
-import Armin
+import AgoraFoundation
 
 class AgoraPollServerAPI: AgoraWidgetServerAPI {
     func submit(pollId: String,

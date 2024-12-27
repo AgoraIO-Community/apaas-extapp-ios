@@ -6,14 +6,14 @@
 //
 
 import Foundation
-import Armin
+import AgoraFoundation
 
 class AgoraPopupQuizServerAPI: AgoraWidgetServerAPI {
     func submitAnswer(_ answerList: [String],
                       selectorId: String,
                       success: SuccessCompletion? = nil,
                       failure: FailureCompletion? = nil) {
-        let event = ArRequestEvent(name: "pop-up-quiz-submit")
+//        let event = ArRequestEvent(name: "pop-up-quiz-submit")
         let url = host + "/edu/apps/\(appId)/v2/rooms/\(roomId)/widgets/popupQuizs/\(selectorId)/users/\(userId)"
         let parameters = ["selectedItems": answerList]
         

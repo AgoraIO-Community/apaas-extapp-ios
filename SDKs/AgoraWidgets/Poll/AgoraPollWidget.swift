@@ -6,9 +6,8 @@
 //
 
 import AgoraWidget
-import AgoraLog
+import AgoraFoundation
 import Masonry
-import Armin
 
 @objcMembers public class AgoraPollWidget: AgoraNativeWidget {
     private var serverAPI: AgoraPollServerAPI?

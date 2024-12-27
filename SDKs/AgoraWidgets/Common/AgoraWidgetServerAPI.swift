@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Armin
+import AgoraFoundation
 
 public typealias SuccessCompletion = () -> ()
 public typealias StringCompletion = (String) -> ()
@@ -20,7 +20,7 @@ public class AgoraWidgetServerAPI: NSObject {
     private(set) var token: String
     private(set) var roomId: String
     private(set) var userId: String
-    private(set) var armin: Armin
+    private(set) var armin: ArminClient
     
     init(host: String,
          appId: String,
@@ -33,8 +33,7 @@ public class AgoraWidgetServerAPI: NSObject {
         self.token = token
         self.roomId = roomId
         self.userId = userId
-        self.armin = Armin(delegate: nil,
-                           logTube: logTube)
+        self.armin = ArminClient(logTube: logTube)
     }
         
     func request(event: String,
@@ -54,7 +53,7 @@ public class AgoraWidgetServerAPI: NSObject {
                 new
             }
         }
-        
+        /*
         let event = ArRequestEvent(name: event)
         
         let requestType: ArRequestType = .http(method,
@@ -79,6 +78,23 @@ public class AgoraWidgetServerAPI: NSObject {
                       responseOnMainQueue: true,
                       success: response,
                       failRetry: failureRetry)
+        */
+        
+        armin.objc_request(url: url,
+                           headers: header,
+                           parameters: parameters,
+                           method: method,
+                           event: event,
+                           timeout: 10,
+                           responseQueue: DispatchQueue.main,
+                           retryCount: 0) { json in
+            success?(json)
+        } failure: { error in
+            failure?(error)
+        } cancelRetry: { error in
+            return error.code == 410
+        }
+
     }
     
     func request(event: String,
@@ -96,8 +112,8 @@ public class AgoraWidgetServerAPI: NSObject {
         
         extra["parameters"] = anyParameters
         
-        self.armin.logTube?.log(info: "http request",
-                                extra: extra.description)
+        self.armin.logTube?.onLog(info: "http request",
+                                extra: extra)
         
         // 创建一个 URL 对象
         let urlObj = URL(string: url)!
@@ -127,11 +143,12 @@ public class AgoraWidgetServerAPI: NSObject {
         let task = session.dataTask(with: request) { [weak self] (data, response, error) in
             if let error = error {
                 let nsError = error as NSError
-                let arError = ArError.fail("response code error",
-                                           code: nsError.code)
+                let arError = ArError(code: nsError.code,
+                                      message: "response code error")
                 
-                self?.armin.logTube?.log(error: arError,
-                                         extra: "event: \(event), message: \(error.localizedDescription)")
+                self?.armin.logTube?.onLog(error: arError,
+                                           extra: ["event" : event,
+                                                   "message" : "\(error.localizedDescription)"])
                 
                 
                 DispatchQueue.main.async {
@@ -146,11 +163,12 @@ public class AgoraWidgetServerAPI: NSObject {
                                     code: -1,
                                     userInfo: ["message": "http data is nil"])
                 
-                let arError = ArError.fail("http request error",
-                                           code: error.code)
+                let arError = ArError(code: error.code,
+                                      message: "http request error")
                 
-                self?.armin.logTube?.log(error: arError,
-                                         extra: "event: \(event), message: \(error.localizedDescription)")
+                self?.armin.logTube?.onLog(error: arError,
+                                           extra: ["event" : event,
+                                                   "message" : "\(error.localizedDescription)"])
                 
                 DispatchQueue.main.async {
                     failure?(error)
@@ -165,8 +183,9 @@ public class AgoraWidgetServerAPI: NSObject {
                 
                 let json = responseData as! [String: Any]
                 
-                self?.armin.logTube?.log(info: "request success",
-                                         extra: "event: \(event), message: \(json)")
+                self?.armin.logTube?.onLog(info: "request success",
+                                           extra: ["event" : event,
+                                                   "message" : "\(json)"])
                 
                 DispatchQueue.main.async {
                     success?(json)
@@ -176,11 +195,12 @@ public class AgoraWidgetServerAPI: NSObject {
                                     code: -1,
                                     userInfo: ["message": "invalid json"])
                 
-                let arError = ArError.fail("http request error",
-                                           code: error.code)
+                let arError = ArError(code: error.code,
+                                      message: "http request error")
                 
-                self?.armin.logTube?.log(error: arError,
-                                         extra: "event: \(event), message: \(error.localizedDescription)")
+                self?.armin.logTube?.onLog(error: arError,
+                                           extra: ["event" : event,
+                                                   "message" : "\(error.localizedDescription)"])
                 
                 DispatchQueue.main.async {
                     failure?(error)
@@ -209,11 +229,12 @@ public class AgoraWidgetServerAPI: NSObject {
                                       fromFile: fileUrl) { [weak self] (data, response, error) in
             if let error = error {
                 let nsError = error as NSError
-                let arError = ArError.fail("response code error",
-                                           code: nsError.code)
+                let arError = ArError(code: nsError.code,
+                                      message: "response code error")
                 
-                self?.armin.logTube?.log(error: arError,
-                                         extra: "event: \(event), message: \(error.localizedDescription)")
+                self?.armin.logTube?.onLog(error: arError,
+                                           extra: ["event" : event,
+                                                   "message" : "\(error.localizedDescription)"])
                 
                 DispatchQueue.main.async {
                     failure?(error)
@@ -226,11 +247,11 @@ public class AgoraWidgetServerAPI: NSObject {
                 let error = NSError(domain: "Invalid response",
                                     code: -1)
                 
-                let arError = ArError.fail("Invalid response",
-                                           code: -1)
+                let arError = ArError(code: -1,
+                                      message: "Invalid response")
                 
-                self?.armin.logTube?.log(error: arError,
-                                         extra: "event: \(event)")
+                self?.armin.logTube?.onLog(error: arError,
+                                           extra: ["event" : event])
                 
                 DispatchQueue.main.async {
                     failure?(error)
@@ -240,8 +261,8 @@ public class AgoraWidgetServerAPI: NSObject {
             }
             
             if response.statusCode == 200 {
-                self?.armin.logTube?.log(info: "request success",
-                                         extra: "event: \(event)")
+                self?.armin.logTube?.onLog(info: "request success",
+                                           extra: ["event": event])
                 
                 DispatchQueue.main.async {
                     success?()
@@ -251,11 +272,12 @@ public class AgoraWidgetServerAPI: NSObject {
                                     code: -1,
                                     userInfo: ["message": "upload stream file failled with code: \(response.statusCode)"])
                 
-                let arError = ArError.fail("http request",
-                                           code: -1)
+                let arError = ArError(code: -1,
+                                      message: "http request")
                 
-                self?.armin.logTube?.log(error: arError,
-                                         extra: "event: \(event), message: upload stream file failled with code: \(response.statusCode)")
+                self?.armin.logTube?.onLog(error: arError,
+                                         extra: ["event": event,
+                                                 "message" : "upload stream file failled with code: \(response.statusCode)"])
                 
                 DispatchQueue.main.async {
                     failure?(error)

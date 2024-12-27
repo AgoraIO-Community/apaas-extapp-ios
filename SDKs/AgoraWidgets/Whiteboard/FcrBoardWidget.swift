@@ -7,9 +7,8 @@
 
 import AgoraUIBaseViews
 import AgoraWidget
-import AgoraLog
+import AgoraFoundation
 import Photos
-import Armin
 
 @objcMembers public class FcrBoardWidget: AgoraNativeWidget {
     // Views
@@ -790,7 +789,7 @@ fileprivate extension UIImage {
 }
 
 fileprivate extension FcrBoardLogType {
-    var toAgoraType: AgoraLogType {
+    var toAgoraType: AgoraLogInnerType {
         switch self {
         case .info:     return .info
         case .warning:  return .warning

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Armin
+import AgoraFoundation
 
 class FcrBoardServerAPI: AgoraWidgetServerAPI {
     func getWindowAttributes(success: JsonCompletion? = nil,

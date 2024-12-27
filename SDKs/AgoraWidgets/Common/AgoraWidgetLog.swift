@@ -6,15 +6,14 @@
 //
 
 import Foundation
-import AgoraLog
-import Armin
+import AgoraFoundation
 
 protocol AgoraWidgetLogTube where Self: NSObject {
     var logger: AgoraWidgetLogger {set get}
     
     func log(content: String,
              extra: String?,
-             type: AgoraLogType,
+             type: AgoraLogInnerType,
              fromClass: AnyClass?,
              funcName: String,
              line: Int)
@@ -23,7 +22,7 @@ protocol AgoraWidgetLogTube where Self: NSObject {
 extension AgoraWidgetLogTube {
     func log(content: String,
              extra: String? = nil,
-             type: AgoraLogType,
+             type: AgoraLogInnerType,
              fromClass: AnyClass? = nil,
              funcName: String = #function,
              line: Int = #line) {
@@ -82,7 +81,7 @@ class AgoraWidgetLogger: NSObject {
     
     fileprivate func log(content: String,
                          extra: String?,
-                         type: AgoraLogType,
+                         type: AgoraLogInnerType,
                          from: AnyClass,
                          funcName: String = #function,
                          line: Int = #line) {
@@ -137,40 +136,33 @@ class AgoraWidgetLogger: NSObject {
 }
 
 extension AgoraWidgetLogger: ArLogTube {
-    func log(info: String,
-             extra: String?) {
+    func onLog(info: String,
+               extra: [String : Any]?) {
         log(content: info,
-            extra: extra,
+            extra: extra?.agora_json_string(),
             type: .info,
             from: AgoraWidgetServerAPI.self)
     }
     
-    func log(warning: String,
-             extra: String?) {
+    func onLog(warning: String, 
+               extra: [String : Any]?) {
         log(content: warning,
-            extra: extra,
+            extra: extra?.agora_json_string(),
             type: .warning,
             from: AgoraWidgetServerAPI.self)
     }
     
-    func log(error: ArError,
-             extra: String?) {
+    func onLog(error: Error, 
+               extra: [String : Any]?) {
         log(content: error.localizedDescription,
-            extra: extra,
+            extra: extra?.agora_json_string(),
             type: .error,
             from: AgoraWidgetServerAPI.self)
     }
 }
 
 extension Date {
-    enum Range: String {
-        case hour = "HH"
-        case minute = "mm"
-        case second = "ss"
-        case milliSecond = "ss.SSS"
-    }
-    
-    static func currentDateString(with range: [Range],
+    static func currentDateString(with range: [Date.Range],
                                   separator: String? = nil) -> String {
         let array = range.map { (item) -> String in
             return item.rawValue
@@ -188,7 +180,7 @@ extension Date {
     }
 }
 
-extension AgoraLogType {
+extension AgoraLogInnerType {
     var stringValue: String {
         switch self {
         case .debug:   return "DEBUG"
