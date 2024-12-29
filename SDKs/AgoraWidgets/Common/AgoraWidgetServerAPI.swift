@@ -81,7 +81,7 @@ public class AgoraWidgetServerAPI: NSObject {
         */
         
         armin.objc_request(url: url,
-                           headers: header,
+                           headers: tHeader,
                            parameters: parameters,
                            method: method,
                            event: event,

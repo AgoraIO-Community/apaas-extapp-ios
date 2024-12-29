@@ -19,7 +19,6 @@ Pod::Spec.new do |spec|
   spec.user_target_xcconfig = { "VALID_ARCHS" => "arm64 armv7 x86_64" }
 
   # Agora libs
-  spec.dependency "AgoraFoundation",            "~> 1.2.0"
   spec.dependency "AgoraRtcEngine_Special_iOS", "3.7.2.133"
 
   # Netless
@@ -41,6 +40,7 @@ Pod::Spec.new do |spec|
 
     ss.dependency "AgoraUIBaseViews/Source"
     ss.dependency "AgoraWidget/Source"
+    ss.dependency "AgoraFoundation/Source"
   end
 
   spec.subspec "Build" do |ss|
@@ -51,6 +51,7 @@ Pod::Spec.new do |spec|
 
     ss.dependency "AgoraUIBaseViews/Binary"
     ss.dependency "AgoraWidget/Binary"
+    ss.dependency "AgoraFoundation/Binary"
   end
   
   spec.subspec "Binary" do |ss|
@@ -60,6 +61,7 @@ Pod::Spec.new do |spec|
 
     ss.dependency "AgoraUIBaseViews/Binary"
     ss.dependency "AgoraWidget/Binary"
+    ss.dependency "AgoraFoundation/Binary"
   end
 
   spec.default_subspec = "Source"
