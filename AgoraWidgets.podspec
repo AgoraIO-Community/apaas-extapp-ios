@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "AgoraWidgets"
-  spec.version      = "2.8.103"
+  spec.version      = "2.8.105"
   spec.summary      = "Agora widgets"
   spec.description  = "Agora native widgets"
   spec.homepage     = "https://docs.agora.io/en/agora-class/landing-page?platform=iOS"
@@ -15,21 +15,21 @@ Pod::Spec.new do |spec|
 
   spec.source_files = "SDKs/AgoraWidgets/**/**/*.{h,m,swift}"
   
-  spec.dependency "AgoraUIBaseViews", ">=2.8.0"
-  spec.dependency "AgoraWidget", ">=2.8.0"
-  spec.dependency "AgoraLog", "1.0.2"
-  spec.dependency "Armin", "~> 1.0"
-
-  spec.dependency "SwifterSwift"
-  spec.dependency "Masonry"
-  spec.dependency "AgoraRtcEngine_Special_iOS", '~> 3.7.2.133'
+  # Agora libs
+  spec.dependency "AgoraRtcEngine_Special_iOS", "3.7.2.133"
+  spec.dependency "AgoraFoundation",            "~> 1.2.0"
+  spec.dependency "AgoraWidget",                "~> 2.8.105"
   
   # Netless
-  spec.dependency "Whiteboard", ">=2.16.107"
+  spec.dependency "Whiteboard"
   
   # Hyphenate
-  spec.dependency "Agora_Chat_iOS", "1.0.6"
-  spec.dependency "SDWebImage", "<=5.12.0"
+  spec.dependency "Agora_Chat_iOS",             "1.0.6"
+
+  # Third libs
+  spec.dependency "SwifterSwift"
+  spec.dependency "Masonry"
+  spec.dependency "SDWebImage",                 "<=5.12.0"
 
   spec.pod_target_xcconfig  = { "EXCLUDED_ARCHS[sdk=iphonesimulator*]" => "arm64", "DEFINES_MODULE" => "YES" }
   spec.user_target_xcconfig = { "EXCLUDED_ARCHS[sdk=iphonesimulator*]" => "arm64", "DEFINES_MODULE" => "YES" }

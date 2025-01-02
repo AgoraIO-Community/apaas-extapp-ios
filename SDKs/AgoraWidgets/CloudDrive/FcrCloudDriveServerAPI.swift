@@ -5,7 +5,7 @@
 //  Created by ZYP on 2021/10/21.
 //
 
-import Armin
+import AgoraFoundation
 
 class FcrCloudDriveServerAPI: AgoraWidgetServerAPI {
     typealias SuccessBlock<FcrCloudDriveFileListServerObject> = (FcrCloudDriveFileListServerObject) -> ()

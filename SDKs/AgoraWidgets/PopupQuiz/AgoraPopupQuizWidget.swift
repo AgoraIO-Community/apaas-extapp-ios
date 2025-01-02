@@ -6,8 +6,7 @@
 //
 
 import AgoraWidget
-import AgoraLog
-import Armin
+import AgoraFoundation
 import UIKit
 
 @objcMembers public class AgoraPopupQuizWidget: AgoraNativeWidget {

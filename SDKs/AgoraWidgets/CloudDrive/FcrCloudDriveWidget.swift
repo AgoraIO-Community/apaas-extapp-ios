@@ -7,7 +7,7 @@
 
 import MobileCoreServices
 import AgoraWidget
-import AgoraLog
+import AgoraFoundation
 import Masonry
 import Photos
 import Darwin

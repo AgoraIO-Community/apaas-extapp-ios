@@ -6,6 +6,7 @@
 //
 
 import AgoraWidget
+import AgoraFoundation
 
 public class AgoraNativeWidget: AgoraBaseWidget, AgoraWidgetLogTube {
     var logger: AgoraWidgetLogger

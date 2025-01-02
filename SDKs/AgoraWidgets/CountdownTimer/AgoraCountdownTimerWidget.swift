@@ -6,7 +6,7 @@
 //
 
 import AgoraWidget
-import AgoraLog
+import AgoraFoundation
 import Masonry
 
 @objcMembers public class AgoraCountdownTimerWidget: AgoraNativeWidget {
