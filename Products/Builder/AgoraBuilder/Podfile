@@ -5,7 +5,7 @@ target 'AgoraBuilder' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   
-  pod 'Whiteboard',   :git => 'https://github.com/netless-io/Whiteboard-iOS', :branch => 'effect-mixing'
+  pod 'Whiteboard',   '2.16.107'
   pod 'SwifterSwift', '5.2.0'
   pod 'Masonry',      '1.1.0'
 
