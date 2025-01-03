@@ -16,12 +16,12 @@ Pod::Spec.new do |spec|
   spec.source_files = "SDKs/AgoraWidgets/**/**/*.{h,m,swift}"
   
   # Agora libs
-  spec.dependency "AgoraRtcEngine_Special_iOS", "3.7.2.133"
+  spec.dependency "AgoraRtcEngine_Special_iOS", "~> 3.7.2.133"
   spec.dependency "AgoraFoundation",            "~> 1.2.0"
   spec.dependency "AgoraWidget",                "~> 2.8.105"
   
   # Netless
-  spec.dependency "Whiteboard"
+  spec.dependency "Whiteboard",                 ">= 2.16.107"
   
   # Hyphenate
   spec.dependency "Agora_Chat_iOS",             "1.0.6"
