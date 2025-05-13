@@ -1,6 +1,5 @@
   # close source libs
   pod 'AgoraUIBaseViews/Binary', :path => '../../../AgoraUIBaseViews_Local.podspec'
-  pod 'AgoraFoundation/Binary',   :path => '../../../AgoraFoundation_Local.podspec'
   pod 'AgoraWidget/Binary',      :path => '../../../AgoraWidget_Local.podspec'
   
   # open source libs
