@@ -11,7 +11,7 @@ import Whiteboard
 class FcrBoardMainWindow: NSObject {
     private weak var whiteSDK: WhiteSDK?
     
-    private var whiteRoom: WhiteRoom {
+    var whiteRoom: WhiteRoom {
         didSet {
             let extra = ["whiteRoom": whiteRoom.description]
             
