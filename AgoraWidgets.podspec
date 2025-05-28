@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "AgoraWidgets"
-  spec.version      = "2.8.110"
+  spec.version      = "2.8.111"
   spec.summary      = "Agora widgets"
   spec.description  = "Agora native widgets"
   spec.homepage     = "https://docs.agora.io/en/agora-class/landing-page?platform=iOS"
@@ -18,7 +18,7 @@ Pod::Spec.new do |spec|
   # Agora libs
   spec.dependency "AgoraRtcEngine_Special_iOS", ">= 3.7.2.133", "< 3.7.4"
   spec.dependency "AgoraFoundation",            "~> 3.5.0"
-  spec.dependency "AgoraWidget",                "~> 2.8.110"
+  spec.dependency "AgoraWidget", "~>2.8.111"
   
   # Netless
   spec.dependency "Whiteboard"
