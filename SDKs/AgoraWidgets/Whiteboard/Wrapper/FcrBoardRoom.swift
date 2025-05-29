@@ -232,8 +232,7 @@ private extension FcrBoardRoom {
                 return
             }
             
-            mainWindow.setValue(whiteRoom,
-                                forKey: "whiteRoom")
+            mainWindow.whiteRoom = whiteRoom
         } failure: { [weak self] _ in
             self?.reJoin()
         }
