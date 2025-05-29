@@ -15,6 +15,7 @@ Podfile.lock
 Pods
 Products/App/
 Products/Libs/
+Products/Builder/AgoraBuilder
 Products/dSYMs_Simulator/
 Products/dSYMs_iPhone/
 Package

@@ -30,6 +30,10 @@ CICD_Upload_Path="${CICD_Scripts_Path}/SDK/Upload"
 # dependency
 ./Products/Scripts/Build/dependency.sh ${Repo_Name}
 
+# Copy AgoraBuilder Xcode Project
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+"${SCRIPT_DIR}/copy_agora_builder.sh"
+
 # build
 for SDK in ${SDK_Array[*]} 
 do
