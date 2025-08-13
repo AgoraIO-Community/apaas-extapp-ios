@@ -62,17 +62,17 @@ class FcrBoardListener: NSObject {
     }
     
     @objc func rtcAudioFileInfo(_ notification: Notification) {
-        guard let object = notification.object as? [String: Any],
-              let info = object["info"] as? AgoraRtcAudioFileInfo else {
-            return
-        }
-        
-        log(content: #function,
-            extra: "filePath: \(info.filePath), durationMs: \(info.durationMs)",
-            type: .info)
-        
-        effectMixer?.setEffectDurationUpdate(info.filePath,
-                                             duration: Int(info.durationMs))
+//        guard let object = notification.object as? [String: Any],
+//              let info = object["info"] as? AgoraRtcAudioFileInfo else {
+//            return
+//        }
+//        
+//        log(content: #function,
+//            extra: "filePath: \(info.filePath), durationMs: \(info.durationMs)",
+//            type: .info)
+//        
+//        effectMixer?.setEffectDurationUpdate(info.filePath,
+//                                             duration: Int(info.durationMs))
     }
     
     @objc func rtcAudioEffectFinish(_ notification: Notification) {
@@ -195,11 +195,11 @@ extension FcrBoardListener: WhiteAudioEffectMixerBridgeDelegate {
             type: .info,
             fromClass: FcrBoardListener.self)
         
-        return result
+        return Double(result)
     }
     
     func setEffectsVolume(_ volume: Double) -> Int32 {
-        let result = rtc.setEffectsVolume(volume)
+        let result = rtc.setEffectsVolume(Int(volume))
         
         log(content: #function,
             extra: "volume: \(volume), result: \(result)",
@@ -212,7 +212,7 @@ extension FcrBoardListener: WhiteAudioEffectMixerBridgeDelegate {
     func setVolumeOfEffect(_ soundId: Int32,
                            withVolume volume: Double) -> Int32 {
         let result = rtc.setVolumeOfEffect(soundId,
-                                           withVolume: volume)
+                                           withVolume: Int32(volume))
         
         log(content: #function,
             extra: "soundId: \(soundId), volume: \(volume), result: \(result)",
@@ -233,6 +233,10 @@ extension FcrBoardListener: WhiteAudioEffectMixerBridgeDelegate {
                     identifier: String) -> Int32 {
         var extra = "soundId: \(soundId), filePath: \(filePath ?? "nil"), loopCount: \(loopCount), pitch: \(pitch), pan: \(pan), gain: \(gain) publish: \(publish), startPos: \(startPos), identifier: \(identifier)"
         
+        guard let filePath = filePath else {
+            return -1
+        }
+        
         if identifier == "mediaPlayer" {
             let tGain: Double = 300
             
@@ -240,10 +244,10 @@ extension FcrBoardListener: WhiteAudioEffectMixerBridgeDelegate {
             
             let result = rtc.playEffect(soundId,
                                         filePath: filePath,
-                                        loopCount: loopCount,
+                                        loopCount: Int(loopCount),
                                         pitch: pitch,
                                         pan: pan,
-                                        gain: tGain,
+                                        gain: Int(tGain),
                                         publish: publish)
             
             extra += ", result: \(result)"
@@ -261,10 +265,10 @@ extension FcrBoardListener: WhiteAudioEffectMixerBridgeDelegate {
             
             let result = rtc.playEffect(soundId,
                                         filePath: filePath,
-                                        loopCount: loopCount,
+                                        loopCount: Int(loopCount),
                                         pitch: pitch,
                                         pan: pan,
-                                        gain: tGain,
+                                        gain: Int(tGain),
                                         publish: publish,
                                         startPos: startPos)
             
@@ -303,6 +307,10 @@ extension FcrBoardListener: WhiteAudioEffectMixerBridgeDelegate {
     
     func preloadEffect(_ soundId: Int32,
                        filePath: String?) -> Int32 {
+        guard let filePath = filePath else {
+            return -1
+        }
+        
         let result = rtc.preloadEffect(soundId,
                                        filePath: filePath)
         
