@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   spec.source_files = "SDKs/AgoraWidgets/**/**/*.{h,m,swift}"
   
   # Agora libs
-  spec.dependency "AgoraRtcEngine_Special_iOS", ">= 3.7.2.133", "< 3.7.4"
+  spec.dependency "AgoraRtcEngine_Special_iOS", "4.3.2.149"
   spec.dependency "AgoraFoundation",            "~> 3.5.0"
   spec.dependency "AgoraWidget", "~>2.8.111"
   
