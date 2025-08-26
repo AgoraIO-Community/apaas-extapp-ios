@@ -50,7 +50,7 @@ class FcrBoardRoom: NSObject {
         let whiteSDK = WhiteSDK(whiteBoardView: whiteView,
                                 config: sdkConfig,
                                 commonCallbackDelegate: listener,
-                                effectMixerBridgeDelegate: listener)
+                                effectMixerBridgeDelegate: nil)
         
         whiteSDK.setParameters(["effectMixingForMediaPlayer": true])
         
@@ -62,7 +62,7 @@ class FcrBoardRoom: NSObject {
         super.init()
         
         listener.roomNeedObserve = self
-        listener.effectMixer = whiteSDK.effectMixer
+//        listener.effectMixer = whiteSDK.effectMixer
         
         registerH5App()
         
