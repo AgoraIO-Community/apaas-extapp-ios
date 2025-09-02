@@ -146,7 +146,7 @@ extension AgoraPopupQuizWidget: AgoraUIContentContainer {
     }
     
     public func initViewFrame() {
-        contentView.mas_makeConstraints { (make) in
+        contentView.agora_mas_makeConstraints { (make) in
             make?.top.left()?.right()?.bottom()?.equalTo()(0)
         }
     }

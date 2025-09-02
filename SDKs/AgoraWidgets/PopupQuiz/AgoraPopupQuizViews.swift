@@ -5,9 +5,10 @@
 //  Created by Cavan on 2022/3/5.
 //
 
+import AgoraFoundation
 import AgoraUIBaseViews
 import SwifterSwift
-import Masonry
+
 import UIKit
 
 // MAKR: - Top View
@@ -75,14 +76,14 @@ class AgoraPopupQuizTopView: UIView, AgoraUIContentContainer {
         let titleSize = selector.agora_size(font: titleLabel.font,
                                             height: defaultHeight)
         
-        titleLabel.mas_makeConstraints { (make) in
+        titleLabel.agora_mas_makeConstraints { (make) in
             make?.left.equalTo()(10)
             make?.top.bottom()?.equalTo()(0)
             make?.width.equalTo()(titleSize.width + 2)
         }
      
-        timeLabel.mas_makeConstraints { (make) in
-            make?.left.equalTo()(titleLabel.mas_right)?.offset()(5)
+        timeLabel.agora_mas_makeConstraints { (make) in
+            make?.left.equalTo()(titleLabel.agora_mas_right)?.offset()(5)
             make?.top.right().bottom()?.equalTo()(0)
         }
     }

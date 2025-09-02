@@ -6,7 +6,7 @@
 //
 
 import AgoraUIBaseViews
-import Masonry
+
 import UIKit
 
 protocol FcrCloudDriveTopViewDelegate: NSObjectProtocol {
@@ -146,66 +146,66 @@ extension FcrCloudDriveTopView: AgoraUIContentContainer {
     
     func initViewFrame() {
         /// 上半部分
-        contentView1.mas_makeConstraints { make in
+        contentView1.agora_mas_makeConstraints { make in
             make?.left.right().top().equalTo()(self)
             make?.height.equalTo()(29)
         }
         
-        publicButton.mas_makeConstraints { make in
+        publicButton.agora_mas_makeConstraints { make in
             make?.centerY.equalTo()(self.contentView1)
             make?.left.equalTo()(19)
         }
         
-        privateButton.mas_makeConstraints { make in
+        privateButton.agora_mas_makeConstraints { make in
             make?.centerY.equalTo()(self.contentView1)
-            make?.left.equalTo()(publicButton.mas_right)?.offset()(40)
+            make?.left.equalTo()(publicButton.agora_mas_right)?.offset()(40)
         }
         
-        selectedLine.mas_makeConstraints { make in
+        selectedLine.agora_mas_makeConstraints { make in
             make?.width.equalTo()(self.selectedLineSize.width)
             make?.height.equalTo()(self.selectedLineSize.height)
             make?.bottom.equalTo()(self.contentView1)
-            make?.centerX.equalTo()(publicButton.mas_centerX)
+            make?.centerX.equalTo()(publicButton.agora_mas_centerX)
         }
         
-        closeButton.mas_makeConstraints { make in
+        closeButton.agora_mas_makeConstraints { make in
             make?.centerY.equalTo()(self.contentView1)
             make?.width.height().equalTo()(24)
-            make?.right.equalTo()(self.contentView1.mas_right)?.offset()(-10)
+            make?.right.equalTo()(self.contentView1.agora_mas_right)?.offset()(-10)
         }
         /// 下半部分
-        contentView2.mas_makeConstraints { make in
-            make?.top.equalTo()(contentView1.mas_bottom)?.offset()(1)
+        contentView2.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(contentView1.agora_mas_bottom)?.offset()(1)
             make?.left.right().equalTo()(self)
             make?.height.equalTo()(30)
         }
         
-        refreshButton.mas_makeConstraints { make in
+        refreshButton.agora_mas_makeConstraints { make in
             make?.centerY.equalTo()(self.contentView2)
             make?.left.equalTo()(self.contentView2)?.offset()(15)
             make?.height.equalTo()(26)
             make?.width.equalTo()(26)
         }
         
-        pathNameLabel.mas_makeConstraints { make in
-            make?.left.equalTo()(refreshButton.mas_right)?.offset()(4)
+        pathNameLabel.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(refreshButton.agora_mas_right)?.offset()(4)
             make?.centerY.equalTo()(self.contentView2)
         }
         
-        searchBar.mas_makeConstraints { make in
+        searchBar.agora_mas_makeConstraints { make in
             make?.width.equalTo()(160)
             make?.height.equalTo()(22)
             make?.right.equalTo()(self)?.offset()(-15)
-            make?.centerY.equalTo()(self.contentView2.mas_centerY)
+            make?.centerY.equalTo()(self.contentView2.agora_mas_centerY)
         }
         
-        fileCountLabel.mas_makeConstraints { make in
-            make?.right.equalTo()(self.searchBar.mas_left)?.offset()(-10)
+        fileCountLabel.agora_mas_makeConstraints { make in
+            make?.right.equalTo()(self.searchBar.agora_mas_left)?.offset()(-10)
             make?.centerY.equalTo()(self.contentView2)
         }
         
-        listHeaderLabel.mas_makeConstraints { make in
-            make?.top.equalTo()(contentView2.mas_bottom)
+        listHeaderLabel.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(contentView2.agora_mas_bottom)
             make?.left.equalTo()(self)?.offset()(14)
             make?.height.equalTo()(30)
         }
@@ -276,7 +276,7 @@ private extension FcrCloudDriveTopView {
     }
     
     private func update(selectedType: FcrCloudDriveFileViewType) {
-        var constraints: ((MASConstraintMaker?) -> Void)
+        var constraints: ((AgoraMASConstraintMaker?) -> Void)
         
         switch selectedType {
         case .uiPublic:
@@ -286,7 +286,7 @@ private extension FcrCloudDriveTopView {
                 make?.width.equalTo()(self.selectedLineSize.width)
                 make?.height.equalTo()(self.selectedLineSize.height)
                 make?.bottom.equalTo()(self.contentView1)
-                make?.centerX.equalTo()(self.publicButton.mas_centerX)
+                make?.centerX.equalTo()(self.publicButton.agora_mas_centerX)
             }
         case .uiPrivate:
             pathNameLabel.text = "fcr_cloud_private_resource".widgets_localized()
@@ -295,14 +295,14 @@ private extension FcrCloudDriveTopView {
                 make?.width.equalTo()(self.selectedLineSize.width)
                 make?.height.equalTo()(self.selectedLineSize.height)
                 make?.bottom.equalTo()(self.contentView1)
-                make?.centerX.equalTo()(self.privateButton.mas_centerX)
+                make?.centerX.equalTo()(self.privateButton.agora_mas_centerX)
             }
         }
         
         privateButton.isSelected = !selectedType.isPublic
         publicButton.isSelected = selectedType.isPublic
         
-        selectedLine.mas_remakeConstraints(constraints)
+        selectedLine.agora_mas_remakeConstraints(constraints)
         
         UIView.animate(withDuration: TimeInterval.agora_animation) {
             self.contentView1.layoutIfNeeded()

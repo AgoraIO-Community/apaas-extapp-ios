@@ -30,7 +30,6 @@ Pod::Spec.new do |spec|
 
   # Third libs
   spec.dependency "SwifterSwift"
-  spec.dependency "Masonry"
   spec.dependency "SDWebImage",                 "<=5.12.0"
   
   spec.subspec "Source" do |ss|

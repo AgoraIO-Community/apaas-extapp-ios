@@ -6,7 +6,7 @@
 //
 
 import AgoraUIBaseViews
-import Masonry
+
 import UIKit
 
 class AgoraPollHeaderView: UIView, AgoraUIContentContainer {
@@ -48,7 +48,7 @@ class AgoraPollHeaderView: UIView, AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        label.mas_makeConstraints { (make) in
+        label.agora_mas_makeConstraints { (make) in
             make?.left.equalTo()(8)
             make?.top.bottom()?.right().equalTo()(0)
         }
@@ -171,7 +171,7 @@ class AgoraPollOptionCell: UITableViewCell, AgoraUIContentContainer {
         
         let horizontalSpace: CGFloat = 15
         
-        optionImageView.mas_makeConstraints { make in
+        optionImageView.agora_mas_makeConstraints { make in
             make?.left.equalTo()(horizontalSpace)
             make?.top.equalTo()(5)
             make?.width.height().equalTo()(12)
@@ -182,14 +182,14 @@ class AgoraPollOptionCell: UITableViewCell, AgoraUIContentContainer {
         let labelLeft: CGFloat = itemOption.labelLeftSpace
         let labelRight: CGFloat = itemOption.labelRightSpace
 
-        optionLabel.mas_makeConstraints { make in
+        optionLabel.agora_mas_makeConstraints { make in
             make?.top.equalTo()(0)
             make?.left.equalTo()(labelLeft)
             make?.right.equalTo()(-labelRight)
             make?.bottom.equalTo()(-0)
         }
         
-        sepLine.mas_makeConstraints { make in
+        sepLine.agora_mas_makeConstraints { make in
             make?.left.equalTo()(horizontalSpace)
             make?.right.equalTo()(-horizontalSpace)
             make?.height.equalTo()(1)
@@ -247,21 +247,21 @@ class AgoraPollResultCell: UITableViewCell, AgoraUIContentContainer {
     func initViewFrame() {
         let itemResult = UIConfig.poll.result
         
-        resultLabel.mas_makeConstraints { (make) in
+        resultLabel.agora_mas_makeConstraints { (make) in
             make?.top.equalTo()(0)
             make?.right.equalTo()(-itemResult.labelHorizontalSpace)
             make?.width.equalTo()(itemResult.labelWidth)
             make?.bottom.equalTo()(0)
         }
         
-        titleLabel.mas_makeConstraints { make in
+        titleLabel.agora_mas_makeConstraints { make in
             make?.top.equalTo()(0)
             make?.left.equalTo()(itemResult.labelHorizontalSpace)
-            make?.right.equalTo()(resultLabel.mas_left)
+            make?.right.equalTo()(resultLabel.agora_mas_left)
             make?.bottom.equalTo()(0)
         }
         
-        resultProgressView.mas_makeConstraints { make in
+        resultProgressView.agora_mas_makeConstraints { make in
             make?.left.equalTo()(itemResult.labelHorizontalSpace)
             make?.right.equalTo()(-itemResult.labelHorizontalSpace)
             make?.bottom.equalTo()(0)

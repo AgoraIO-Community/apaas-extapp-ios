@@ -82,23 +82,23 @@ fileprivate class FcrCloudDriveFileFormatCell: UITableViewCell,
     }
     
     func initViewFrame() {
-        iconImageView.mas_makeConstraints { make in
+        iconImageView.agora_mas_makeConstraints { make in
             make?.top.left().equalTo()(0)
             make?.width.height().equalTo()(30)
         }
         
-        titleLabel.mas_makeConstraints { make in
-            make?.left.equalTo()(iconImageView.mas_right)?.offset()(10)
+        titleLabel.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(iconImageView.agora_mas_right)?.offset()(10)
             make?.height.equalTo()(9)
             make?.right.equalTo()(0)
-            make?.centerY.equalTo()(iconImageView.mas_centerY)?.offset()(-5)
+            make?.centerY.equalTo()(iconImageView.agora_mas_centerY)?.offset()(-5)
         }
         
-        formatLabel.mas_makeConstraints { make in
-            make?.left.equalTo()(iconImageView.mas_right)?.offset()(10)
+        formatLabel.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(iconImageView.agora_mas_right)?.offset()(10)
             make?.height.equalTo()(9)
             make?.right.equalTo()(0)
-            make?.centerY.equalTo()(iconImageView.mas_centerY)?.offset()(5)
+            make?.centerY.equalTo()(iconImageView.agora_mas_centerY)?.offset()(5)
         }
     }
     
@@ -145,21 +145,21 @@ class FcrCloudDriveFileFormatView: UIView,
     }
     
     func initViewFrame() {
-        contentView.mas_makeConstraints { make in
+        contentView.agora_mas_makeConstraints { make in
             make?.width.equalTo()(375)
             make?.top.equalTo()(0)
             make?.bottom.equalTo()(0)
             make?.right.equalTo()(0)
         }
         
-        titleLabel.mas_makeConstraints { make in
+        titleLabel.agora_mas_makeConstraints { make in
             make?.left.equalTo()(25)
             make?.top.equalTo()(20)
             make?.height.equalTo()(17)
             make?.right.equalTo()(-100)
         }
         
-        closeButton.mas_makeConstraints { make in
+        closeButton.agora_mas_makeConstraints { make in
             let right = UIScreen.agora_safe_area_right + 10
             
             make?.right.equalTo()(-right)
@@ -167,8 +167,8 @@ class FcrCloudDriveFileFormatView: UIView,
             make?.width.height().equalTo()(20)
         }
         
-        tableView.mas_makeConstraints { make in
-            make?.top.equalTo()(titleLabel.mas_bottom)?.offset()(28)
+        tableView.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(titleLabel.agora_mas_bottom)?.offset()(28)
             make?.left.equalTo()(20)
             make?.right.equalTo()(0)
             make?.bottom.equalTo()(-24)

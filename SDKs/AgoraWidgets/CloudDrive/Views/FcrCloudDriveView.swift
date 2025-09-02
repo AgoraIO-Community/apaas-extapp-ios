@@ -54,12 +54,12 @@ extension FcrCloudDriveView: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        topView.mas_makeConstraints { make in
+        topView.agora_mas_makeConstraints { make in
             make?.left.and().right().and().top().equalTo()(self)
             make?.height.equalTo()(90)
         }
         
-        bottomView.mas_makeConstraints { make in
+        bottomView.agora_mas_makeConstraints { make in
             make?.left.right().bottom().equalTo()(0)
             make?.height.equalTo()(38)
         }
@@ -71,15 +71,15 @@ extension FcrCloudDriveView: AgoraUIContentContainer {
         bottomView.isHidden = isHidden
         
         if isHidden {
-            listView.mas_remakeConstraints { make in
+            listView.agora_mas_remakeConstraints { make in
                 make?.left.right().bottom().equalTo()(0)
-                make?.top.equalTo()(self.topView.mas_bottom)
+                make?.top.equalTo()(self.topView.agora_mas_bottom)
             }
         } else {
-            listView.mas_remakeConstraints { make in
+            listView.agora_mas_remakeConstraints { make in
                 make?.left.right().equalTo()(self)
-                make?.top.equalTo()(self.topView.mas_bottom)
-                make?.bottom.equalTo()(self.bottomView.mas_top)
+                make?.top.equalTo()(self.topView.agora_mas_bottom)
+                make?.bottom.equalTo()(self.bottomView.agora_mas_top)
             }
         }
     }
