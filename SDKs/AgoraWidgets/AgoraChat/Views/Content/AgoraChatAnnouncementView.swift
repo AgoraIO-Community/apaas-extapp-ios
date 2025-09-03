@@ -111,64 +111,64 @@ extension AgoraChatAnnouncementView: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        nilImageView.mas_makeConstraints { make in
+        nilImageView.agora_mas_makeConstraints { make in
             make?.centerX.centerY().equalTo()(self);
             make?.width.equalTo()(80)
             make?.height.equalTo()(80)
         }
         
-        nilTextView.mas_makeConstraints { make in
+        nilTextView.agora_mas_makeConstraints { make in
             make?.centerX.equalTo()(nilImageView)
-            make?.top.equalTo()(nilImageView.mas_bottom)
+            make?.top.equalTo()(nilImageView.agora_mas_bottom)
             make?.width.equalTo()(self)
             make?.height.equalTo()(25)
         }
         
-        annoucementLabel.mas_makeConstraints { make in
+        annoucementLabel.agora_mas_makeConstraints { make in
             make?.left.equalTo()(13)
             make?.top.equalTo()(13)
             make?.width.height().lessThanOrEqualTo()(self)?.offset()(-14)
             make?.bottom.lessThanOrEqualTo()(self)?.offset()(-34)
         }
         
-        deleteButton.mas_makeConstraints { make in
-            make?.top.equalTo()(annoucementLabel.mas_bottom)?.offset()(5)
+        deleteButton.agora_mas_makeConstraints { make in
+            make?.top.equalTo()(annoucementLabel.agora_mas_bottom)?.offset()(5)
             make?.right.equalTo()(-11)
             make?.width.height().equalTo()(24)
         }
         
-        editButton.mas_makeConstraints { make in
+        editButton.agora_mas_makeConstraints { make in
             make?.top.equalTo()(deleteButton)
-            make?.right.equalTo()(deleteButton.mas_left)?.offset()(-14)
+            make?.right.equalTo()(deleteButton.agora_mas_left)?.offset()(-14)
             make?.width.height().equalTo()(24)
         }
         
-        warnLabel.mas_makeConstraints { make in
+        warnLabel.agora_mas_makeConstraints { make in
             make?.left.equalTo()(13)
-            make?.top.equalTo()(inputTextView.mas_bottom)?.offset()(4)
+            make?.top.equalTo()(inputTextView.agora_mas_bottom)?.offset()(4)
         }
         
-        inputTextView.mas_makeConstraints { make in
+        inputTextView.agora_mas_makeConstraints { make in
             make?.top.left().equalTo()(10)
             make?.right.equalTo()(-10)
             make?.bottom.equalTo()(-63)
         }
         
-        textCountLabel.mas_makeConstraints { make in
-            make?.right.equalTo()(inputTextView.mas_right)?.offset()(-7)
-            make?.width.lessThanOrEqualTo()(inputTextView.mas_width)?.offset()(-3)
+        textCountLabel.agora_mas_makeConstraints { make in
+            make?.right.equalTo()(inputTextView.agora_mas_right)?.offset()(-7)
+            make?.width.lessThanOrEqualTo()(inputTextView.agora_mas_width)?.offset()(-3)
             make?.height.equalTo()(20)
-            make?.top.equalTo()(inputTextView.mas_bottom)?.offset()(4)
+            make?.top.equalTo()(inputTextView.agora_mas_bottom)?.offset()(4)
         }
         
-        cancelButton.mas_makeConstraints { make in
+        cancelButton.agora_mas_makeConstraints { make in
             make?.width.equalTo()(60)
             make?.height.equalTo()(24)
             make?.left.equalTo()(34)
             make?.bottom.equalTo()(-14)
         }
         
-        issueButton.mas_makeConstraints { make in
+        issueButton.agora_mas_makeConstraints { make in
             make?.width.equalTo()(60)
             make?.height.equalTo()(24)
             make?.right.equalTo()(-30)

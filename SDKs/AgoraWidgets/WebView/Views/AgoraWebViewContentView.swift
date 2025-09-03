@@ -73,15 +73,15 @@ class AgoraWebViewContentView: UIView, AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        headerView.mas_makeConstraints { make in
+        headerView.agora_mas_makeConstraints { make in
             make?.top.equalTo()(0)
             make?.left.right().equalTo()(0)
             make?.height.equalTo()(26)
         }
         
-        webView.mas_makeConstraints { make in
+        webView.agora_mas_makeConstraints { make in
             make?.left.right().equalTo()(0)
-            make?.top.equalTo()(headerView.mas_bottom)
+            make?.top.equalTo()(headerView.agora_mas_bottom)
             make?.bottom.equalTo()(0)
         }
     }

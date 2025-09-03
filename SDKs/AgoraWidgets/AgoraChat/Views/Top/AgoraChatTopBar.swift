@@ -33,18 +33,18 @@ class AgoraChatTopBar: UIView {
     func foucusOnMessageTab(_ type: AgoraChatContentType) {
         switch type {
         case .messages:
-            selectedLine.mas_remakeConstraints { make in
+            selectedLine.agora_mas_remakeConstraints { make in
                 make?.width.equalTo()(buttonLength)
                 make?.height.equalTo()(2)
                 make?.bottom.equalTo()(0)
-                make?.centerX.equalTo()(messageButton.mas_centerX)
+                make?.centerX.equalTo()(messageButton.agora_mas_centerX)
             }
         case .announcement:
-            selectedLine.mas_remakeConstraints { make in
+            selectedLine.agora_mas_remakeConstraints { make in
                 make?.width.equalTo()(buttonLength)
                 make?.height.equalTo()(2)
                 make?.bottom.equalTo()(0)
-                make?.centerX.equalTo()(announcementButton.mas_centerX)
+                make?.centerX.equalTo()(announcementButton.agora_mas_centerX)
             }
         }
     }
@@ -53,16 +53,16 @@ class AgoraChatTopBar: UIView {
         redDot.agora_visible = true
         switch type {
         case .messages:
-            redDot.mas_remakeConstraints { make in
+            redDot.agora_mas_remakeConstraints { make in
                 make?.width.height().equalTo()(4)
                 make?.top.equalTo()(5)
-                make?.right.equalTo()(messageButton.mas_right)?.offset()(-5)
+                make?.right.equalTo()(messageButton.agora_mas_right)?.offset()(-5)
             }
         case .announcement:
-            redDot.mas_remakeConstraints { make in
+            redDot.agora_mas_remakeConstraints { make in
                 make?.width.height().equalTo()(4)
                 make?.top.equalTo()(5)
-                make?.right.equalTo()(announcementButton.mas_right)?.offset()(-5)
+                make?.right.equalTo()(announcementButton.agora_mas_right)?.offset()(-5)
             }
         }
     }
@@ -104,29 +104,29 @@ extension AgoraChatTopBar: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        messageButton.mas_makeConstraints { make in
+        messageButton.agora_mas_makeConstraints { make in
             make?.top.bottom().equalTo()(0)
             make?.left.equalTo()(0)
             make?.width.equalTo()(buttonLength)
         }
         
-        announcementButton.mas_makeConstraints { make in
+        announcementButton.agora_mas_makeConstraints { make in
             make?.top.bottom().equalTo()(0)
-            make?.left.equalTo()(messageButton.mas_right)
+            make?.left.equalTo()(messageButton.agora_mas_right)
             make?.width.equalTo()(buttonLength)
         }
         
-        selectedLine.mas_makeConstraints { make in
+        selectedLine.agora_mas_makeConstraints { make in
             make?.width.equalTo()(buttonLength)
             make?.height.equalTo()(2)
             make?.bottom.equalTo()(0)
-            make?.left.equalTo()(messageButton.mas_left)
+            make?.left.equalTo()(messageButton.agora_mas_left)
         }
         
-        redDot.mas_makeConstraints { make in
+        redDot.agora_mas_makeConstraints { make in
             make?.width.height().equalTo()(4)
             make?.top.equalTo()(5)
-            make?.right.equalTo()(messageButton.mas_right)?.offset()(-5)
+            make?.right.equalTo()(messageButton.agora_mas_right)?.offset()(-5)
         }
     }
     

@@ -35,10 +35,10 @@ class AgoraChatEmojiView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        collectionView.mas_remakeConstraints { make in
+        collectionView.agora_mas_remakeConstraints { make in
             make?.top.equalTo()(0)
             if #available(iOS 11.0, *) {
-                make?.left.equalTo()(mas_safeAreaLayoutGuideLeft)
+                make?.left.equalTo()(agora_mas_safeAreaLayoutGuideLeft)
             } else {
                 make?.left.equalTo()(0)
             }
@@ -173,12 +173,12 @@ class AgoraChatEmojiCell: UICollectionViewCell, AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        imageView.mas_makeConstraints { make in
+        imageView.agora_mas_makeConstraints { make in
             make?.centerX.centerY().equalTo()(0)
             make?.width.height().equalTo()(40)
         }
         
-        label.mas_makeConstraints { make in
+        label.agora_mas_makeConstraints { make in
             make?.top.equalTo()(5)
             make?.centerX.bottom().equalTo()(0)
             make?.height.equalTo()(14)

@@ -422,7 +422,7 @@ extension FcrBoardWidget {
         pageControl.agora_enable = UIConfig.netlessBoard.pageControl.enable
         pageControl.agora_visible = hasOperationPrivilege
         
-        pageControl.mas_makeConstraints { make in
+        pageControl.agora_mas_makeConstraints { make in
             make?.left.equalTo()(view)?.offset()(UIDevice.current.agora_is_pad ? 15 : 12)
             make?.bottom.equalTo()(view)?.offset()(UIDevice.current.agora_is_pad ? -20 : -15)
             make?.height.equalTo()(UIDevice.current.agora_is_pad ? 34 : 32)

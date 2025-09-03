@@ -6,7 +6,7 @@
 //
 
 import AgoraUIBaseViews
-import Masonry
+
 import UIKit
 
 protocol AgoraChatMainViewDelegate: NSObjectProtocol {
@@ -175,23 +175,23 @@ extension AgoraChatMainView: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        topBar.mas_makeConstraints { make in
+        topBar.agora_mas_makeConstraints { make in
             make?.left.top().right().equalTo()(0)
             make?.height.equalTo()(34)
         }
-        bottomBar.mas_makeConstraints { make in
+        bottomBar.agora_mas_makeConstraints { make in
             make?.left.right().bottom().equalTo()(0)
             make?.height.equalTo()(40)
         }
-        announcementView.mas_remakeConstraints { make in
+        announcementView.agora_mas_remakeConstraints { make in
             make?.left.right().equalTo()(0)
-            make?.top.equalTo()(topBar.mas_bottom)?.offset()(0)
+            make?.top.equalTo()(topBar.agora_mas_bottom)?.offset()(0)
             make?.bottom.equalTo()(0)
         }
-        messageView.mas_makeConstraints { make in
+        messageView.agora_mas_makeConstraints { make in
             make?.left.right().equalTo()(0)
-            make?.top.equalTo()(topBar.mas_bottom)?.offset()(0)
-            make?.bottom.equalTo()(bottomBar.mas_top)?.offset()(0)
+            make?.top.equalTo()(topBar.agora_mas_bottom)?.offset()(0)
+            make?.bottom.equalTo()(bottomBar.agora_mas_top)?.offset()(0)
         }
     }
     

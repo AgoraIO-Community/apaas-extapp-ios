@@ -38,11 +38,11 @@ public class AgoraCountdownSingleTimeView: UIView, AgoraUIContentContainer {
     }
     
     public func initViewFrame() {
-        bgImageView.mas_makeConstraints { make in
+        bgImageView.agora_mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
         
-        label.mas_makeConstraints { make in
+        label.agora_mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
     }

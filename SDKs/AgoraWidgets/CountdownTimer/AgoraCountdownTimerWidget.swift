@@ -7,7 +7,7 @@
 
 import AgoraWidget
 import AgoraFoundation
-import Masonry
+
 
 @objcMembers public class AgoraCountdownTimerWidget: AgoraNativeWidget {
     private var timer: Timer?
@@ -101,7 +101,7 @@ private extension AgoraCountdownTimerWidget {
     }
     
     func initConstraints() {
-        countdownView.mas_makeConstraints { (make) in
+        countdownView.agora_mas_makeConstraints { (make) in
             make?.left.right()?.bottom()?.top()?.equalTo()(0)
         }
     }

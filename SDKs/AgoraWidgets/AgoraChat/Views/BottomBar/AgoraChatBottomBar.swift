@@ -127,7 +127,7 @@ private extension AgoraChatBottomBar {
                                   inputView: nil)
         
         window.addSubview(chatInputView)
-        chatInputView.mas_makeConstraints { make in
+        chatInputView.agora_mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
         window.layoutIfNeeded()
@@ -148,7 +148,7 @@ private extension AgoraChatBottomBar {
                                   inputView: emojiView)
         
         window.addSubview(chatInputView)
-        chatInputView.mas_makeConstraints { make in
+        chatInputView.agora_mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
         window.layoutIfNeeded()
@@ -203,21 +203,21 @@ private extension AgoraChatBottomBar {
         emojiButton.agora_visible = emojiVisible
         pictureButton.agora_visible = pictureVisible
         
-        muteButton.mas_updateConstraints { make in
+        muteButton.agora_mas_updateConstraints { make in
             make?.width.equalTo()(muteVisible ? buttonLength : 0)
         }
 
-        emojiButton.mas_updateConstraints { make in
+        emojiButton.agora_mas_updateConstraints { make in
             make?.width.equalTo()(emojiVisible ? buttonLength : 0)
         }
-        chatInputView.emojiButton.mas_updateConstraints { make in
+        chatInputView.emojiButton.agora_mas_updateConstraints { make in
             make?.width.equalTo()(emojiVisible ? chatInputView.buttonLength : 0)
         }
         
-        pictureButton.mas_updateConstraints { make in
+        pictureButton.agora_mas_updateConstraints { make in
             make?.width.equalTo()(pictureVisible ? buttonLength : 0)
         }
-        chatInputView.imageButton.mas_updateConstraints { make in
+        chatInputView.imageButton.agora_mas_updateConstraints { make in
             make?.width.equalTo()(pictureVisible ? chatInputView.buttonLength : 0)
         }
     }
@@ -275,30 +275,30 @@ extension AgoraChatBottomBar: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        muteButton.mas_makeConstraints { make in
+        muteButton.agora_mas_makeConstraints { make in
             make?.right.equalTo()(-5)
             make?.centerY.equalTo()(0)
             make?.width.height().equalTo()(buttonLength)
         }
         
-        inputBackView.mas_makeConstraints { make in
+        inputBackView.agora_mas_makeConstraints { make in
             make?.left.equalTo()(5)
             make?.top.bottom().equalTo()(0)
-            make?.right.equalTo()(muteButton.mas_left)?.offset()(-5)
+            make?.right.equalTo()(muteButton.agora_mas_left)?.offset()(-5)
         }
-        pictureButton.mas_makeConstraints { make in
+        pictureButton.agora_mas_makeConstraints { make in
             make?.right.equalTo()(-5)
             make?.centerY.equalTo()(0)
             make?.width.height().equalTo()(buttonLength)
         }
-        emojiButton.mas_makeConstraints { make in
-            make?.right.equalTo()(pictureButton.mas_left)
+        emojiButton.agora_mas_makeConstraints { make in
+            make?.right.equalTo()(pictureButton.agora_mas_left)
             make?.centerY.equalTo()(0)
             make?.width.height().equalTo()(buttonLength)
         }
-        inputButton.mas_makeConstraints { make in
+        inputButton.agora_mas_makeConstraints { make in
             make?.left.equalTo()(5)
-            make?.right.equalTo()(emojiButton.mas_left)
+            make?.right.equalTo()(emojiButton.agora_mas_left)
             make?.top.bottom().equalTo()(0)
         }
     }
