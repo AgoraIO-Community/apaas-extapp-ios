@@ -6,7 +6,7 @@
 # UIBaseViews
 Artifactory_iOS_URL="https://artifactory.agoralab.co/artifactory/AD_repo/aPaaS/iOS"
 
-Version="2.8.120"
+Version="2.8.121"
 Branch="release_${Version}"
 
 AgoraWidget_URL="${Artifactory_iOS_URL}/AgoraWidget/${Branch}/dev/AgoraWidget_${Version}.zip"
