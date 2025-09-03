@@ -61,25 +61,25 @@ class AgoraChatCommonMessageCell: UITableViewCell, AgoraUIContentContainer {
 
         guard !messageImageView.size.equalTo(.zero),
               messageImageView.agora_visible else {
-            messageImageView.mas_remakeConstraints { make in
+            messageImageView.agora_mas_remakeConstraints { make in
                 if toRight {
                     make?.right.equalTo()(-25)
                 } else {
                     make?.left.equalTo()(25)
                 }
-                make?.top.equalTo()(avatarView.mas_bottom)?.offset()(17)
+                make?.top.equalTo()(avatarView.agora_mas_bottom)?.offset()(17)
                 make?.size.equalTo()(0)
             }
             return
         }
         let size = messageImageView.size
-        messageImageView.mas_remakeConstraints { make in
+        messageImageView.agora_mas_remakeConstraints { make in
             if toRight {
                 make?.right.equalTo()(-25)
             } else {
                 make?.left.equalTo()(25)
             }
-            make?.top.equalTo()(avatarView.mas_bottom)?.offset()(17)
+            make?.top.equalTo()(avatarView.agora_mas_bottom)?.offset()(17)
             make?.bottom.equalTo()(contentView)
             make?.size.equalTo()(size)
         }
@@ -102,67 +102,67 @@ class AgoraChatCommonMessageCell: UITableViewCell, AgoraUIContentContainer {
     
     func initViewFrame() {
         if reuseIdentifier == AgoraChatCommonMessageCell.sendId {
-            avatarView.mas_makeConstraints { make in
+            avatarView.agora_mas_makeConstraints { make in
                 make?.top.equalTo()(5)
                 make?.right.equalTo()(-14)
                 make?.width.height().equalTo()(kAvatarHeight)
             }
-            nameLabel.mas_makeConstraints { make in
+            nameLabel.agora_mas_makeConstraints { make in
                 make?.centerY.equalTo()(avatarView)
-                make?.right.equalTo()(avatarView.mas_left)?.offset()(-6)
+                make?.right.equalTo()(avatarView.agora_mas_left)?.offset()(-6)
             }
-            roleLabel.mas_makeConstraints { make in
+            roleLabel.agora_mas_makeConstraints { make in
                 make?.height.equalTo()(kRoleLabelHeight)
-                make?.right.equalTo()(nameLabel.mas_left)?.offset()(-6)
+                make?.right.equalTo()(nameLabel.agora_mas_left)?.offset()(-6)
                 make?.centerY.equalTo()(nameLabel)
             }
-            messageLabel.mas_makeConstraints { make in
+            messageLabel.agora_mas_makeConstraints { make in
                 make?.right.equalTo()(-25)
-                make?.top.equalTo()(avatarView.mas_bottom)?.offset()(17)
+                make?.top.equalTo()(avatarView.agora_mas_bottom)?.offset()(17)
                 make?.left.greaterThanOrEqualTo()(25)
                 make?.bottom.equalTo()(self.contentView)?.offset()(-15)
             }
-            bubleView.mas_makeConstraints { make in
+            bubleView.agora_mas_makeConstraints { make in
                 make?.left.equalTo()(messageLabel)?.offset()(-10)
                 make?.right.equalTo()(messageLabel)?.offset()(10)
                 make?.top.equalTo()(messageLabel)?.offset()(-9)
                 make?.bottom.equalTo()(messageLabel)?.offset()(9)
             }
-            messageImageView.mas_makeConstraints { make in
+            messageImageView.agora_mas_makeConstraints { make in
                 make?.right.equalTo()(-25)
-                make?.top.equalTo()(avatarView.mas_bottom)?.offset()(17)
+                make?.top.equalTo()(avatarView.agora_mas_bottom)?.offset()(17)
             }
         } else if reuseIdentifier == AgoraChatCommonMessageCell.receiveId {
-            avatarView.mas_makeConstraints { make in
+            avatarView.agora_mas_makeConstraints { make in
                 make?.top.equalTo()(5)
                 make?.left.equalTo()(14)
                 make?.width.height().equalTo()(kAvatarHeight)
             }
-            nameLabel.mas_makeConstraints { make in
+            nameLabel.agora_mas_makeConstraints { make in
                 make?.centerY.equalTo()(avatarView)
-                make?.left.equalTo()(avatarView.mas_right)?.offset()(6)
+                make?.left.equalTo()(avatarView.agora_mas_right)?.offset()(6)
             }
-            roleLabel.mas_makeConstraints { make in
+            roleLabel.agora_mas_makeConstraints { make in
                 make?.height.equalTo()(kRoleLabelHeight)
-                make?.left.equalTo()(nameLabel.mas_right)?.offset()(6)
+                make?.left.equalTo()(nameLabel.agora_mas_right)?.offset()(6)
                 make?.centerY.equalTo()(nameLabel)
             }
-            messageLabel.mas_makeConstraints { make in
+            messageLabel.agora_mas_makeConstraints { make in
                 make?.left.equalTo()(25)
-                make?.top.equalTo()(avatarView.mas_bottom)?.offset()(17)
+                make?.top.equalTo()(avatarView.agora_mas_bottom)?.offset()(17)
                 make?.right.lessThanOrEqualTo()(-25)
                 make?.bottom.equalTo()(self.contentView)?.offset()(-15)
             }
-            bubleView.mas_makeConstraints { make in
+            bubleView.agora_mas_makeConstraints { make in
                 make?.left.equalTo()(messageLabel)?.offset()(-10)
                 make?.right.equalTo()(messageLabel)?.offset()(10)
                 make?.top.equalTo()(messageLabel)?.offset()(-9)
                 make?.bottom.equalTo()(messageLabel)?.offset()(9)
             }
             
-            messageImageView.mas_makeConstraints { make in
+            messageImageView.agora_mas_makeConstraints { make in
                 make?.left.equalTo()(25)
-                make?.top.equalTo()(avatarView.mas_bottom)?.offset()(17)
+                make?.top.equalTo()(avatarView.agora_mas_bottom)?.offset()(17)
             }
         }
         
@@ -170,7 +170,7 @@ class AgoraChatCommonMessageCell: UITableViewCell, AgoraUIContentContainer {
             return
         }
         let size = messageImageView.size
-        messageImageView.mas_updateConstraints { make in
+        messageImageView.agora_mas_updateConstraints { make in
             make?.size.equalTo()(size)
             make?.bottom.equalTo()(contentView)
         }
@@ -231,17 +231,17 @@ class AgoraChatNoticeMessageCell: UITableViewCell, AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        noticeLabel.mas_makeConstraints { make in
+        noticeLabel.agora_mas_makeConstraints { make in
             make?.center.equalTo()(contentView)
             make?.width.lessThanOrEqualTo()(contentView)?.offset()(-50)
             make?.top.equalTo()(10)
             make?.bottom.equalTo()(-10)
         }
-        noticeImageView.mas_makeConstraints { make in
+        noticeImageView.agora_mas_makeConstraints { make in
             make?.centerY.equalTo()(contentView)
             make?.width.equalTo()(18)
             make?.height.equalTo()(20)
-            make?.right.equalTo()(noticeLabel.mas_left)?.offset()(-5);
+            make?.right.equalTo()(noticeLabel.agora_mas_left)?.offset()(-5);
         }
     }
     

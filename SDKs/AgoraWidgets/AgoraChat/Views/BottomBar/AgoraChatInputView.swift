@@ -6,7 +6,7 @@
 //
 
 import AgoraUIBaseViews
-import Masonry
+
 
 protocol AgoraChatInputViewDelegate: NSObjectProtocol {
     func sendChatText(message: String)
@@ -100,7 +100,7 @@ private extension AgoraChatInputView {
         guard let frame = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
             return
         }
-        self.contentView.mas_remakeConstraints { make in
+        self.contentView.agora_mas_remakeConstraints { make in
             make?.left.right().equalTo()(0)
             make?.bottom.equalTo()(-frame.size.height)
             make?.height.equalTo()(40)
@@ -112,7 +112,7 @@ private extension AgoraChatInputView {
     }
     
     @objc func keyboardWillHide(noti: Notification) {
-        self.contentView.mas_remakeConstraints { make in
+        self.contentView.agora_mas_remakeConstraints { make in
             make?.left.right().equalTo()(0)
             make?.bottom.equalTo()(0)
             make?.height.equalTo()(40)
@@ -189,39 +189,39 @@ extension AgoraChatInputView: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        contentView.mas_makeConstraints { make in
+        contentView.agora_mas_makeConstraints { make in
             make?.left.right().equalTo()(0)
             make?.bottom.equalTo()(frame.maxY)
             make?.height.equalTo()(40)
         }
-        sendButton.mas_makeConstraints { make in
+        sendButton.agora_mas_makeConstraints { make in
             make?.height.equalTo()(30)
             make?.width.equalTo()(60)
             make?.centerY.equalTo()(self.contentView)
             if #available(iOS 11.0, *) {
-                make?.right.equalTo()(self.mas_safeAreaLayoutGuideRight)?.offset()(-20)
+                make?.right.equalTo()(self.agora_mas_safeAreaLayoutGuideRight)?.offset()(-20)
             } else {
                 make?.right.equalTo()(20)
             }
         }
-        imageButton.mas_makeConstraints { make in
-            make?.right.equalTo()(sendButton.mas_left)?.offset()(-10)
+        imageButton.agora_mas_makeConstraints { make in
+            make?.right.equalTo()(sendButton.agora_mas_left)?.offset()(-10)
             make?.centerY.equalTo()(sendButton)
             make?.width.height().equalTo()(24)
         }
-        emojiButton.mas_makeConstraints { make in
-            make?.right.equalTo()(imageButton.mas_left)?.offset()(-10)
+        emojiButton.agora_mas_makeConstraints { make in
+            make?.right.equalTo()(imageButton.agora_mas_left)?.offset()(-10)
             make?.centerY.equalTo()(sendButton)
             make?.width.height().equalTo()(24)
         }
-        inputField.mas_makeConstraints { make in
+        inputField.agora_mas_makeConstraints { make in
             make?.height.equalTo()(34)
             if #available(iOS 11.0, *) {
-                make?.left.equalTo()(self.mas_safeAreaLayoutGuideLeft)?.offset()(20)
+                make?.left.equalTo()(self.agora_mas_safeAreaLayoutGuideLeft)?.offset()(20)
             } else {
                 make?.left.equalTo()(20)
             }
-            make?.right.equalTo()(self.emojiButton.mas_left)?.offset()(-10)
+            make?.right.equalTo()(self.emojiButton.agora_mas_left)?.offset()(-10)
             make?.centerY.equalTo()(self.contentView)
             make?.height.equalTo()(sendButton)
         }

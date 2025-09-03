@@ -113,24 +113,24 @@ extension AgoraChatMessageView: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        messageListView.mas_makeConstraints { make in
+        messageListView.agora_mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(self)
         }
         
-        nilImageView.mas_makeConstraints { make in
+        nilImageView.agora_mas_makeConstraints { make in
             make?.centerX.centerY().equalTo()(self);
             make?.width.equalTo()(80)
             make?.height.equalTo()(80)
         }
         
-        nilLabel.mas_makeConstraints { make in
+        nilLabel.agora_mas_makeConstraints { make in
             make?.centerX.equalTo()(nilImageView)
-            make?.top.equalTo()(nilImageView.mas_bottom)
+            make?.top.equalTo()(nilImageView.agora_mas_bottom)
             make?.width.equalTo()(self);
             make?.height.equalTo()(20);
         }
         
-        annoucementButton.mas_makeConstraints { make in
+        annoucementButton.agora_mas_makeConstraints { make in
             make?.width.left().top().equalTo()(self)
             make?.height.equalTo()(24)
         }

@@ -251,29 +251,29 @@ class FcrCloudDriveBottomView: UIView, AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        uploadFileButton.mas_makeConstraints { make in
-            make?.right.equalTo()(uploadImageButton.mas_left)
-            make?.width.equalTo()(uploadImageButton.mas_width)
+        uploadFileButton.agora_mas_makeConstraints { make in
+            make?.right.equalTo()(uploadImageButton.agora_mas_left)
+            make?.width.equalTo()(uploadImageButton.agora_mas_width)
             make?.top.left().bottom().equalTo()(0)
         }
         
-        uploadImageButton.mas_makeConstraints { make in
+        uploadImageButton.agora_mas_makeConstraints { make in
             make?.right.top().bottom().equalTo()(0)
         }
         
-        questionButton.mas_makeConstraints { make in
+        questionButton.agora_mas_makeConstraints { make in
             make?.left.top().bottom().equalTo()(0)
-            make?.width.equalTo()(questionButton.mas_height)
+            make?.width.equalTo()(questionButton.agora_mas_height)
         }
         
-        line.mas_makeConstraints { make in
+        line.agora_mas_makeConstraints { make in
             make?.centerX.equalTo()(0)
             make?.width.equalTo()(1)
             make?.top.equalTo()(8)
             make?.bottom.equalTo()(-8)
         }
         
-        deleteButton.mas_makeConstraints { make in
+        deleteButton.agora_mas_makeConstraints { make in
             make?.left.top().right().bottom().equalTo()(0)
         }
     }
