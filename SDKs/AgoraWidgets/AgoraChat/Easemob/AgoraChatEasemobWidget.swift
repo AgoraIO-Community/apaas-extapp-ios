@@ -65,7 +65,7 @@ import AgoraChat
         mainView.editAnnouncementEnabled = isTeacher
         view.addSubview(mainView)
 
-        mainView.mas_makeConstraints { make in
+        mainView.agora_mas_makeConstraints { make in
             make?.left.right().top().bottom().equalTo()(0)
         }
         

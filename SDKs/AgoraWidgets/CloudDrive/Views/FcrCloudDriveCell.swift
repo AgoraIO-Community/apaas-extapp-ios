@@ -6,7 +6,7 @@
 //
 
 import AgoraUIBaseViews
-import Masonry
+
 
 class FcrCloudDriveFileUploadProcessView: UIView,
                                           AgoraUIContentContainer {
@@ -35,13 +35,13 @@ class FcrCloudDriveFileUploadProcessView: UIView,
     }
     
     func initViewFrame() {
-        imageView.mas_makeConstraints { make in
+        imageView.agora_mas_makeConstraints { make in
             make?.left.centerY().equalTo()(0)
             make?.width.height().equalTo()(12)
         }
         
-        label.mas_makeConstraints { make in
-            make?.left.equalTo()(imageView.mas_right)?.offset()(3)
+        label.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(imageView.agora_mas_right)?.offset()(3)
             make?.top.bottom().right().equalTo()(0)
         }
     }
@@ -139,33 +139,33 @@ extension FcrCloudDriveCell: AgoraUIContentContainer {
     }
     
     func initViewFrame() {
-        iconImageView.mas_makeConstraints { make in
+        iconImageView.agora_mas_makeConstraints { make in
             make?.height.width().equalTo()(22)
             make?.left.equalTo()(16)
             make?.centerY.equalTo()(self.contentView)
         }
         
-        nameLabel.mas_makeConstraints { make in
-            make?.left.equalTo()(self.iconImageView.mas_right)?.offset()(9)
+        nameLabel.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(self.iconImageView.agora_mas_right)?.offset()(9)
             make?.top.bottom().equalTo()(self.contentView)
-            make?.right.equalTo()(self.uploadProcessView.mas_left)?.offset()(-10)
+            make?.right.equalTo()(self.uploadProcessView.agora_mas_left)?.offset()(-10)
         }
         
-        selectedButton.mas_makeConstraints { make in
+        selectedButton.agora_mas_makeConstraints { make in
             make?.width.equalTo()(50)
             make?.top.bottom().right().equalTo()(0)
         }
         
-        uploadProcessView.mas_makeConstraints { make in
-            make?.left.equalTo()(contentView.mas_right)?.offset()(-120)
+        uploadProcessView.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(contentView.agora_mas_right)?.offset()(-120)
             make?.bottom.top().equalTo()(0)
             make?.width.equalTo()(12 + 100)
         }
         
-        convertUnsuccessfullyLabel.mas_makeConstraints { make in
-            make?.left.equalTo()(uploadProcessView.mas_left)
+        convertUnsuccessfullyLabel.agora_mas_makeConstraints { make in
+            make?.left.equalTo()(uploadProcessView.agora_mas_left)
             make?.top.bottom().equalTo()(0)
-            make?.right.equalTo()(selectedButton.mas_left)
+            make?.right.equalTo()(selectedButton.agora_mas_left)
         }
     }
     

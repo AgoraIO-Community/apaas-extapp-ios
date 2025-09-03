@@ -7,7 +7,7 @@
 
 import AgoraWidget
 import AgoraFoundation
-import Masonry
+
 
 @objcMembers public class AgoraPollWidget: AgoraNativeWidget {
     private var serverAPI: AgoraPollServerAPI?
@@ -125,7 +125,7 @@ extension AgoraPollWidget: AgoraUIContentContainer {
     }
     
     public func initViewFrame() {
-        receiverView.mas_makeConstraints { (make) in
+        receiverView.agora_mas_makeConstraints { (make) in
             make?.top.bottom()?.right()?.left()?.equalTo()(0)
         }
     }

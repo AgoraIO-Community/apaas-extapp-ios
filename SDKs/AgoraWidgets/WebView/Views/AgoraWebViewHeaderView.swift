@@ -98,18 +98,18 @@ class AgoraWebViewHeaderView: UIView, AgoraUIContentContainer {
     func initViewFrame() {
         let stackWidth = stackWidth(count: 1)
         
-        buttonsStackView.mas_makeConstraints { make in
+        buttonsStackView.agora_mas_makeConstraints { make in
             make?.top.equalTo()(0)
             make?.bottom.equalTo()(0)
             make?.right.equalTo()(-15)
             make?.width.equalTo()(stackWidth)
         }
         
-        titleLabel.mas_makeConstraints { make in
+        titleLabel.agora_mas_makeConstraints { make in
             make?.top.equalTo()(0)
             make?.bottom.equalTo()(0)
             make?.left.equalTo()(15)
-            make?.right.equalTo()(buttonsStackView.mas_right)
+            make?.right.equalTo()(buttonsStackView.agora_mas_right)
         }
     }
     
@@ -127,7 +127,7 @@ class AgoraWebViewHeaderView: UIView, AgoraUIContentContainer {
         
         let stackWidth = stackWidth(count: hasPrivilege ? 3 : 1)
 
-        buttonsStackView.mas_updateConstraints { make in
+        buttonsStackView.agora_mas_updateConstraints { make in
             make?.width.equalTo()(stackWidth)
         }
     }

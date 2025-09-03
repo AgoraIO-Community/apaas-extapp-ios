@@ -52,36 +52,36 @@ extension FcrBoardPageControlView: AgoraUIContentContainer {
     func initViewFrame() {
         let kButtonWidth = 30
         let kButtonHeight = 30
-        addBtn.mas_remakeConstraints { make in
+        addBtn.agora_mas_remakeConstraints { make in
             make?.centerY.equalTo()(self)
             make?.left.equalTo()(10)
             make?.width.height().equalTo()(kButtonWidth)
         }
         
-        sepLine.mas_makeConstraints { make in
+        sepLine.agora_mas_makeConstraints { make in
             make?.centerY.equalTo()(self)
-            make?.left.equalTo()(self.addBtn.mas_right)?.offset()(4)
+            make?.left.equalTo()(self.addBtn.agora_mas_right)?.offset()(4)
             make?.top.equalTo()(8)
             make?.bottom.equalTo()(-8)
             make?.width.equalTo()(1)
         }
 
-        prevBtn.mas_remakeConstraints { make in
+        prevBtn.agora_mas_remakeConstraints { make in
             make?.centerY.equalTo()(self)
-            make?.left.equalTo()(self.sepLine.mas_right)?.offset()(3)
+            make?.left.equalTo()(self.sepLine.agora_mas_right)?.offset()(3)
             make?.width.height().equalTo()(kButtonWidth)
         }
         
-        nextBtn.mas_makeConstraints { make in
+        nextBtn.agora_mas_makeConstraints { make in
             make?.centerY.equalTo()(self)
             make?.right.equalTo()(-10)
             make?.width.height().equalTo()(kButtonWidth)
         }
         
-        pageLabel.mas_makeConstraints { make in
+        pageLabel.agora_mas_makeConstraints { make in
             make?.centerY.equalTo()(self)
-            make?.left.equalTo()(self.prevBtn.mas_right)?.offset()(0)
-            make?.right.equalTo()(self.nextBtn.mas_left)?.offset()(0)
+            make?.left.equalTo()(self.prevBtn.agora_mas_right)?.offset()(0)
+            make?.right.equalTo()(self.nextBtn.agora_mas_left)?.offset()(0)
         }
     }
     
