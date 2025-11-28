@@ -19,7 +19,7 @@ Pod::Spec.new do |spec|
   spec.user_target_xcconfig = { "VALID_ARCHS" => "arm64 armv7 x86_64" }
 
   # Agora libs
-  spec.dependency "AgoraRtcEngine_Special_iOS", "~> 4.3.2.164"
+  spec.dependency "AgoraRtcEngine_Special_iOS", "4.3.2.164"
   spec.dependency "AgoraFoundation",            "~> 3.5.0"
 
   # Netless
