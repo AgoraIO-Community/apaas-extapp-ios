@@ -386,9 +386,11 @@ extension FcrBoardListener: WhiteAudioEffectMixerBridgeDelegate {
             type: .info,
             fromClass: FcrBoardListener.self)
         
-        effectMixer?.setEffectDurationUpdate(filePath,
-                                             duration: Int(durationMs))
+        if durationMs > 0 {
+            effectMixer?.setEffectDurationUpdate(filePath,
+                                                 duration: Int(durationMs))
+        }
         
-        return durationMs
+        return durationMs > 0 ? 0 : -1
     }
 }
