@@ -25,13 +25,6 @@ class FcrBoardListener: NSObject {
                                                name: getRtc,
                                                object: nil)
         
-        let audioFileInfo = Notification.Name(rawValue: "rtc.engine.audio.file.info")
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(rtcAudioFileInfo(_:)),
-                                               name: audioFileInfo,
-                                               object: nil)
-        
         let audioEffectFinish = Notification.Name(rawValue: "rtc.engine.audio.effect.finish")
         
         NotificationCenter.default.addObserver(self,
@@ -59,20 +52,6 @@ class FcrBoardListener: NSObject {
     
     @objc func getRtcObject(_ notification: Notification) {
         rtc = notification.object as? AgoraRtcEngineKit
-    }
-    
-    @objc func rtcAudioFileInfo(_ notification: Notification) {
-//        guard let object = notification.object as? [String: Any],
-//              let info = object["info"] as? AgoraRtcAudioFileInfo else {
-//            return
-//        }
-//        
-//        log(content: #function,
-//            extra: "filePath: \(info.filePath), durationMs: \(info.durationMs)",
-//            type: .info)
-//        
-//        effectMixer?.setEffectDurationUpdate(info.filePath,
-//                                             duration: Int(info.durationMs))
     }
     
     @objc func rtcAudioEffectFinish(_ notification: Notification) {
@@ -398,15 +377,18 @@ extension FcrBoardListener: WhiteAudioEffectMixerBridgeDelegate {
         
         return rtc.getEffectCurrentPosition(soundId)
     }
-    
+        
     func getEffectDuration(_ filePath: String) -> Int32 {
-        let result = rtc.getEffectDuration(filePath)
+        let durationMs = rtc.getEffectDuration(filePath)
         
         log(content: #function,
-            extra: "filePath: \(filePath), result: \(result)",
+            extra: "filePath: \(filePath), result: \(durationMs)",
             type: .info,
             fromClass: FcrBoardListener.self)
         
-        return result
+        effectMixer?.setEffectDurationUpdate(filePath,
+                                             duration: Int(durationMs))
+        
+        return durationMs
     }
 }
