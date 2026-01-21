@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
   
   # Agora libs
   spec.dependency "AgoraRtcEngine_Special_iOS", ">= 3.7.2.133", "< 3.7.4"
-  spec.dependency "AgoraFoundation",            "~> 3.9.0"
+  spec.dependency "AgoraFoundation",            "~> 3.5.0"
   spec.dependency "AgoraWidget", "=2.8.116"
   
   # Netless
