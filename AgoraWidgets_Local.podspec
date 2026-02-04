@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "AgoraWidgets"
-  spec.version      = "2.8.125-hello"
+  spec.version      = "2.8.126-hello"
   spec.summary      = "SDKs/AgoraWidgets."
   spec.description  = "Agora native widgets"
   spec.homepage     = "https://docs.agora.io/en/agora-class/landing-page?platform=iOS"
@@ -19,7 +19,7 @@ Pod::Spec.new do |spec|
   spec.user_target_xcconfig = { "VALID_ARCHS" => "arm64 armv7 x86_64" }
 
   # Agora libs
-  spec.dependency "AgoraRtcEngine_Special_iOS", "4.5.2.179"
+  spec.dependency "AgoraVideo_Special_iOS", "4.5.2.189.NOCLV"
   spec.dependency "AgoraFoundation",            "~> 3.5.0"
 
   # Netless
