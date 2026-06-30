@@ -6,6 +6,7 @@
 //
 
 import AgoraWidget
+import AgoraUIBaseViews
 
 @objcMembers public class AgoraWebViewWidget: AgoraNativeWidget {
     private(set) lazy var contentView = AgoraWebViewContentView(delegate: self)
@@ -139,7 +140,7 @@ extension AgoraWebViewWidget {
         guard webViewState == .committed else {
             return
         }
-        UIApplication.shared.keyWindow?.endEditing(true)
+        UIWindow.agora_top_window()?.endEditing(true)
     }
     
     func updateRoomPropertiesZIndex(zIndex: Int) {

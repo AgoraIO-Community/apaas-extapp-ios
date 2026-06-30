@@ -120,7 +120,7 @@ extension AgoraChatBottomBar: AgoraChatEmojiViewDelegate,
 // MARK: - Actions
 private extension AgoraChatBottomBar {
     @objc func onClickInputMessage() {
-        guard let window = UIApplication.shared.keyWindow else {
+        guard let window = UIWindow.agora_top_window() else {
             return
         }
         chatInputView.selectEmoji(false,
@@ -135,7 +135,7 @@ private extension AgoraChatBottomBar {
     }
     
     @objc func onClickInputEmoji() {
-        guard let window = UIApplication.shared.keyWindow else {
+        guard let window = UIWindow.agora_top_window() else {
             return
         }
         let emojiView = AgoraChatEmojiView(frame: CGRect(x: 0,
@@ -321,7 +321,9 @@ extension AgoraChatBottomBar: AgoraUIContentContainer {
 private extension AgoraChatBottomBar {
     func showImagePicker() {
         DispatchQueue.main.async { [weak self] in
-            let topVc = UIViewController.agora_top_view_controller()
+            guard let topVc = UIViewController.agora_top_view_controller() else {
+                return
+            }
             
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self

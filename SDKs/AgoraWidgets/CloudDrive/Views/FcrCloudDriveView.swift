@@ -101,7 +101,9 @@ extension FcrCloudDriveView: AgoraUIContentContainer {
     }
     
     @objc func showFormatView() {
-        let window = UIWindow.agora_top_window()
+        guard let window = UIWindow.agora_top_window() else {
+            return
+        }
         formatView.frame = window.bounds
         window.addSubview(formatView)
         formatView.isHidden = false

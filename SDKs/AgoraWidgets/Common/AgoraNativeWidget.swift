@@ -134,7 +134,9 @@ public class AgoraNativeWidget: AgoraBaseWidget, AgoraWidgetLogTube {
     public func showAlert(title: String = "",
                           contentList: [String],
                           actions: [AgoraAlertAction]) {
-        let vc = UIViewController.agora_top_view_controller()
+        guard let vc = UIViewController.agora_top_view_controller() else {
+            return
+        }
         
         let alertController = AgoraAlert()
         

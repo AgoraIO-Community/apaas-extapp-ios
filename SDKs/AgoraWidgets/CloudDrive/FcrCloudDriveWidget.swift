@@ -280,14 +280,18 @@ private extension FcrCloudDriveWidget {
                                                             in: .import)
         documentPicker.delegate = self
         
-        let vc = UIViewController.agora_top_view_controller()
+        guard let vc = UIViewController.agora_top_view_controller() else {
+            return
+        }
         
         vc.present(documentPicker,
                    animated: true)
     }
     
     @objc func onUploadImageButtonPressed() {
-        let vc = UIViewController.agora_top_view_controller()
+        guard let vc = UIViewController.agora_top_view_controller() else {
+            return
+        }
         
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
