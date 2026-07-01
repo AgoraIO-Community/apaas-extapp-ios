@@ -90,9 +90,10 @@ extension AgoraChatMessageView: AgoraUIContentContainer {
         fullScreenImageView.backgroundColor = .black.withAlphaComponent(0.2)
         fullScreenImageView.contentMode = .scaleAspectFit
         fullScreenImageView.isUserInteractionEnabled = true
-        let topVc = UIViewController.agora_top_view_controller()
-        topVc.view.addSubview(fullScreenImageView)
-        fullScreenImageView.frame = topVc.view.frame
+        if let topVc = UIViewController.agora_top_view_controller() {
+            topVc.view.addSubview(fullScreenImageView)
+            fullScreenImageView.frame = topVc.view.frame
+        }
         
         addSubviews([messageListView,
                      nilImageView,
@@ -315,7 +316,9 @@ private extension AgoraChatMessageView {
     }
     
     func setFullScreenImage(localImage: UIImage) {
-        let topVc = UIViewController.agora_top_view_controller()
+        guard let topVc = UIViewController.agora_top_view_controller() else {
+            return
+        }
         
         topVc.view.bringSubviewToFront(fullScreenImageView)
         fullScreenImageView.agora_visible = true

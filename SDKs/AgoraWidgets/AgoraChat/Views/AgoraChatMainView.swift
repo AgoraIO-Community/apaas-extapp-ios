@@ -141,7 +141,7 @@ class AgoraChatMainView: UIView {
                                with event: UIEvent?) {
         super.touchesBegan(touches,
                            with: event)
-        UIApplication.shared.keyWindow?.endEditing(true)
+        UIWindow.agora_top_window()?.endEditing(true)
     }
     
     required init?(coder: NSCoder) {
