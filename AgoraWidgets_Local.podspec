@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "AgoraWidgets"
-  spec.version      = "2.8.127-hello"
+  spec.version      = "2.8.128-hello"
   spec.summary      = "SDKs/AgoraWidgets."
   spec.description  = "Agora native widgets"
   spec.homepage     = "https://docs.agora.io/en/agora-class/landing-page?platform=iOS"
