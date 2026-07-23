@@ -19,7 +19,7 @@ Pod::Spec.new do |spec|
   spec.user_target_xcconfig = { "VALID_ARCHS" => "arm64 armv7 x86_64" }
 
   # Agora libs
-  spec.dependency "AgoraVideo_Special_iOS", "4.5.2.189.CLVAEC"
+  spec.dependency "AgoraVideo_Special_iOS", ">= 4.5.2.179", "< 4.5.3"
   spec.dependency "AgoraFoundation",            "~> 3.5.0"
 
   # Netless
